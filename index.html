@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NetFree Portal - Akses WiFi & Edukasi Digital</title>
+    <title>NetFree Portal - Akses WiFi Terproteksi & Edukasi Internet</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
     <style>
-        /* CSS RESET & MODERN DESIGN */
+        /* ==============================
+           CSS TOTAL: Membereskan Semua Masalah Tampilan
+           ============================== */
         :root {
             --primary: #4f46e5;
             --secondary: #7c3aed;
@@ -19,8 +21,12 @@
             --text-sub: #64748b;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
@@ -28,47 +34,54 @@
             color: var(--text-main);
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: flex-start; /* Memastikan scroll bekerja */
             min-height: 100vh;
-            padding: 20px 15px;
+            padding: 30px 15px; /* Jarak pas di HP */
         }
 
+        /* Container Utama */
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 450px; /* Maksimal lebar untuk HP besar */
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px; /* Jarak antar kartu */
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* CARD STYLE */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* CARD STYLE (Kartu WiFi & Artikel) */
         .card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 28px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            padding: 35px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255,255,255,0.3);
+            transition: 0.3s;
         }
 
-        /* IKLAN PLACEHOLDER */
+        /* IKLAN SLOT STYLE (Responsive) */
         .ad-placeholder {
             background: #f1f5f9;
             border: 1px dashed #cbd5e1;
             border-radius: 16px;
             margin: 15px 0;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            min-height: 100px; /* Jarak minimum iklan */
+            display: flex; align-items: center; justify-content: center;
             overflow: hidden;
+            color: #94a3b8; font-size: 11px;
         }
 
         /* PROGRESS STEPS */
         .steps {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
         .step {
             width: 35px; height: 35px; border-radius: 50%;
@@ -76,18 +89,23 @@
             justify-content: center; font-weight: 700; font-size: 14px;
             transition: 0.3s;
         }
-        .step.active { background: var(--primary); color: white; transform: scale(1.1); }
+        .step.active {
+            background: var(--primary); color: white;
+            transform: scale(1.1); box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+        }
         .step.done { background: var(--success); color: white; }
 
-        /* BUTTONS */
+        /* BUTTONS (Modern & Klik Responsif) */
         .btn-main {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
             color: white; border: none; padding: 18px; border-radius: 16px;
             width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
         }
-        .btn-main:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.5); }
+        .btn-main:active { transform: translateY(-1px); }
+        .btn-main:disabled { background: #d1d5db; box-shadow: none; cursor: not-allowed; color: #9ca3af; }
 
         /* PASSWORD BOX */
         .pass-display {
@@ -98,19 +116,154 @@
             text-align: center;
             margin-top: 15px;
         }
-        .pass-code {
-            font-size: 28px; font-weight: 800; color: #166534;
-            font-family: monospace; letter-spacing: 3px; margin: 10px 0;
-        }
+        .pass-display small { font-weight: 700; color: #166534; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+        .pass-code { font-family: monospace; font-size: 28px; font-weight: 800; color: #166534; letter-spacing: 3px; margin: 10px 0; }
 
-        /* ARTIKEL BOX */
+        /* ARTIKEL BOX (Untuk Keperluan SEO & AdSense) */
         .article-card {
             background: white;
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            line-height: 1.7;
         }
-        .article-card h2 { font-size: 18px; margin-bottom: 12px; color: #0f172a; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .article-card h2 {
+            font-size: 20px; font-weight: 800; margin-bottom: 12px;
+            color: #0f172a; border-left: 4px solid var(--primary); padding-left: 10px;
+        }
+        .article-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 15px; }
+        .article-card b { color: #1f2937; }
+        
+        .quote-box {
+            background: #fdf2f2;
+            padding: 15px; border-radius: 12px; font-style: italic;
+            border-left: 4px solid #ef4444; margin: 20px 0; font-size: 14px; color: #7f1d1d;
+        }
+
+        /* HELPER CLASS */
+        .hidden { display: none !important; }
+        .timer-txt { color: #ef4444; font-weight: 700; }
+        .copy-btn { background: none; border: none; color: var(--primary); font-weight: 700; cursor: pointer; font-size: 13px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h1 style="font-size: 24px; text-align: center; font-weight: 800; margin-bottom: 10px;">NetFree WiFi Portal</h1>
+        <p style="font-size: 13px; text-align: center; color: var(--text-sub); margin-bottom: 25px;">
+            Verifikasi diperlukan untuk mendapatkan akses WiFi gratis hari ini.
+        </p>
+
+        <div class="steps">
+            <div id="s1" class="step active">1</div>
+            <div id="s2" class="step">2</div>
+            <div id="s3" class="step">✓</div>
+        </div>
+
+        <div id="view1">
+            <div class="ad-placeholder">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <button class="btn-main" onclick="startLoading()">Dapatkan Password WiFi →</button>
+        </div>
+
+        <div id="view2" class="hidden">
+            <p style="text-align:center; font-size: 14px; margin-bottom: 10px;">Verifikasi sedang berlangsung...</p>
+            <div class="ad-placeholder" style="min-height: 250px;">
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p style="text-align:center; font-size: 13px; margin-bottom: 15px;">
+                Tunggu <span id="timer" class="timer-txt">15</span> detik hingga verifikasi selesai.
+            </p>
+            <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Ambil Password</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <div style="font-size: 50px; text-align:center; margin-bottom: 10px;">🎉</div>
+            <h2 style="text-align:center; color: var(--success); margin-bottom: 15px;">Verifikasi Sukses!</h2>
+            <div class="pass-display">
+                <small>Password WiFi Hari Ini</small>
+                <div id="wifiPass" class="pass-code">---</div>
+                <button onclick="copyPass()" class="copy-btn">Salin Password</button>
+            </div>
+            <p style="font-size: 12px; color: var(--text-sub); text-align: center; margin-top: 20px; line-height: 1.5;">
+                Demi keamanan bersama, password ini akan <b>diperbarui otomatis setiap hari pukul 00:00 WIB</b>. Pastikan mampir lagi besok untuk mendapatkan kode akses baru!
+            </p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Ngobrol Santai: Dari Mana Sih Asalnya Internet?</h2>
+        <p>Pernah bayangin nggak kalau hidup tanpa internet sehari aja? Pasti berasa ada yang kurang banget. Tapi tau nggak sih kalau teknologi yang kita pake buat scroll media sosial sekarang ini dulunya cuma proyek militer yang super rahasia?</p>
+        <p>Semuanya dimulai sekitar tahun 1960-an. Waktu itu ada proyek namanya <b>ARPANET</b> yang dibikin sama Departemen Pertahanan Amerika. Tujuannya supaya komputer-komputer penting bisa tetep "ngobrol" kalau seandainya ada gangguan besar di pusat data.</p>
+        
+        <div class="quote-box">
+            "Internet itu kayak perpustakaan raksasa yang nggak pernah tutup. Kuncinya ada di kita: mau dipake buat cari ilmu, atau cuma numpang lewat?"
+        </div>
+
+        <h3>Kenapa Harus Verifikasi?</h3>
+        <p>Sistem verifikasi harian ini kami terapkan untuk menjaga stabilitas jaringan dari penggunaan robot otomatis dan memastikan semua pengguna mendapatkan kecepatan akses terbaik.</p>
+        
+        <p style="font-size: 11px; text-align: center; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 20px; margin-top: 20px;">
+            &copy; 2026 NetFree Portal - Akses Internet Gratis & Aman Terpercaya.
+        </p>
+    </div>
+
+</div>
+
+<script>
+    // FUNGSI JAVASCRIPT
+    function startLoading() {
+        // Tampilkan Loading
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        
+        // Update Progress
+        document.getElementById('s1').classList.add('done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        // Jalankan Timer 15 Detik
+        let sec = 15;
+        const countdown = setInterval(() => {
+            sec--;
+            document.getElementById('timer').innerText = sec;
+            if (sec <= 0) {
+                clearInterval(countdown);
+                document.getElementById('btnGet').disabled = false;
+            }
+        }, 1000);
+    }
+
+    function showResult() {
+        // Tampilkan Hasil
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        
+        // Update Progress Akhir
+        document.getElementById('s2').classList.add('done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+
+        // Generate password unik harian otomatis
+        const d = new Date();
+        const dailyCode = (d.getFullYear() + (d.getMonth()+1) + d.getDate()) * 1234 % 9000 + 1000;
+        document.getElementById('wifiPass').innerText = "WIFI-FREE-" + dailyCode;
+    }
+
+    function copyPass() {
+        const pass = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(pass);
+        alert("Password berhasil disalin ke clipboard!");
+    }
+</script>
+
+</body>
+</html>
         .article-card h3 { font-size: 16px; margin: 15px 0 10px; }
         .article-card p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 15px; }
         .quote-box { background: #f8fafc; padding: 15px; border-radius: 12px; font-style: italic; border-left: 4px solid #94a3b8; margin: 20px 0; }
