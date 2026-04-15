@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NetFree Portal - Secure WiFi Access & Cyber Security Hub</title>
+    <title>NetFree Portal - Solusi Akses WiFi Aman & Edukasi Digital</title>
+    
+    <meta name="description" content="Dapatkan akses WiFi gratis dengan protokol keamanan terenkripsi. Pelajari cara melindungi data pribadi Anda dari ancaman cyber di era digital.">
+    <meta name="keywords" content="WiFi gratis, keamanan digital, cyber security, VPN, privasi internet">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS RESET - ANTI BOCOR */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        /* CSS TOTAL FIX - Mencegah kebocoran teks ke background */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
             --primary: #4f46e5;
             --secondary: #7c3aed;
             --success: #10b981;
-            --warning: #f59e0b;
+            --dark-blue: #0f172a;
             --text-main: #1e293b;
             --text-sub: #64748b;
-            --white: #ffffff;
+            --bg-body: #f1f5f9;
         }
 
         body {
@@ -34,194 +41,155 @@
 
         .container {
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
 
-        /* CARD PORTAL */
-        .card {
-            background: var(--white);
-            border-radius: 28px;
-            padding: 30px;
+        /* CARD STYLE - PORTAL UTAMA */
+        .portal-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 35px 25px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             text-align: center;
         }
 
-        .steps {
+        .steps-wrapper {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .step {
-            width: 35px; height: 35px; border-radius: 50%;
-            background: #f1f5f9; display: flex; align-items: center;
+        .step-node {
+            width: 38px; height: 38px; border-radius: 50%;
+            background: #e2e8f0; display: flex; align-items: center;
             justify-content: center; font-weight: 700; font-size: 14px;
-            color: #94a3b8;
-            transition: 0.3s;
+            color: #94a3b8; transition: all 0.4s ease;
         }
 
-        .step.active { background: var(--primary); color: white; transform: scale(1.1); }
-        .step.done { background: var(--success); color: white; }
+        .step-node.active { background: var(--primary); color: white; transform: scale(1.15); box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4); }
+        .step-node.done { background: var(--success); color: white; }
 
         .btn-main {
             background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white; border: none; padding: 18px; border-radius: 16px;
+            color: white; border: none; padding: 18px; border-radius: 18px;
             width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-            margin-top: 15px;
+            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.5);
+            margin-top: 15px; transition: 0.2s;
         }
-
+        .btn-main:active { transform: scale(0.97); }
         .btn-main:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
 
-        /* ARTIKEL CYBER SECURITY (HIGH CPC) */
-        .content-section {
-            background: var(--white);
-            border-radius: 24px;
+        /* ARTIKEL SECTION - HIGH QUALITY CONTENT */
+        .content-card {
+            background: #ffffff;
+            border-radius: 28px;
             padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .content-section h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .content-card h2 {
+            font-size: 20px; font-weight: 800; color: var(--dark-blue);
+            margin-bottom: 25px; border-left: 5px solid var(--primary);
+            padding-left: 15px; line-height: 1.2;
         }
 
-        .article-item {
-            margin-bottom: 25px;
-            border-bottom: 1px solid #f1f5f9;
-            padding-bottom: 15px;
-        }
-
-        .article-item:last-child { border: none; }
-
-        .article-item h3 {
-            font-size: 17px;
-            margin-bottom: 10px;
-            color: #0f172a;
-            line-height: 1.3;
-        }
-
-        .article-item p {
-            font-size: 14px;
-            color: var(--text-sub);
-            line-height: 1.7;
-            text-align: left;
-        }
-
-        .badge {
-            background: #eef2ff;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+        .article-entry { margin-bottom: 30px; }
+        
+        .badge-topic {
+            background: #eef2ff; color: var(--primary);
+            padding: 5px 12px; border-radius: 8px; font-size: 11px;
+            font-weight: 700; text-transform: uppercase; margin-bottom: 12px;
             display: inline-block;
         }
 
-        .pass-box {
-            background: #f0fdf4;
-            border: 2px dashed var(--success);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 20px 0;
+        .article-entry h3 { font-size: 17px; margin-bottom: 10px; color: #0f172a; line-height: 1.4; }
+        .article-entry p { font-size: 14px; color: var(--text-sub); line-height: 1.8; text-align: justify; margin-bottom: 10px; }
+
+        .pass-display {
+            background: #f0fdf4; border: 2px dashed var(--success);
+            padding: 25px; border-radius: 20px; margin: 20px 0;
         }
 
         .hidden { display: none !important; }
 
-        .ad-space {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            min-height: 100px;
-            margin: 15px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: #94a3b8;
-            border-radius: 12px;
+        .ad-placeholder {
+            background: #f8fafc; border: 1px solid #e2e8f0;
+            min-height: 100px; margin: 20px 0; border-radius: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; color: #94a3b8; font-style: italic;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="card">
-        <div class="steps">
-            <div id="s1" class="step active">1</div>
-            <div id="s2" class="step">2</div>
-            <div id="s3" class="step">✓</div>
+    <div class="portal-card">
+        <div class="steps-wrapper">
+            <div id="s1" class="step-node active">1</div>
+            <div id="s2" class="step-node">2</div>
+            <div id="s3" class="step-node">✓</div>
         </div>
 
         <div id="view1">
-            <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;">Secure WiFi Portal</h1>
-            <p style="font-size: 13px; color: var(--text-sub);">Enkripsi koneksi Anda dan dapatkan akses internet aman hari ini.</p>
-            <div class="ad-space">ADSENSE AD TOP</div>
-            <button class="btn-main" onclick="startProcess()">Unlock Secure Access</button>
+            <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;">Secure Access</h1>
+            <p style="font-size: 14px; color: var(--text-sub);">Dapatkan password WiFi Anda melalui enkripsi keamanan satu arah.</p>
+            <div class="ad-placeholder">UNIT IKLAN ATAS (728x90)</div>
+            <button class="btn-main" onclick="startLoading()">Unlock Connection →</button>
         </div>
 
         <div id="view2" class="hidden">
-            <p style="font-size: 14px; font-weight: 600;">Melakukan Scanning Keamanan...</p>
-            <div class="ad-space" style="min-height: 250px;">ADSENSE AD MIDDLE</div>
-            <p style="font-size: 13px;">Proses enkripsi: <b id="timer" style="color:#ef4444">15</b> detik...</p>
-            <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Ambil Sertifikat Akses</button>
+            <p style="font-size: 15px; font-weight: 600;">Mengautentikasi Sinyal...</p>
+            <div class="ad-placeholder" style="min-height: 250px;">UNIT IKLAN TENGAH (300x250)</div>
+            <p style="font-size: 13px;">Tunggu <b id="timer" style="color:#ef4444">15</b> detik...</p>
+            <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Terima Kunci Akses</button>
         </div>
 
         <div id="view3" class="hidden">
-            <h2 style="color: var(--success); font-size: 20px;">Koneksi Terverifikasi</h2>
-            <div class="pass-box">
-                <small style="font-size: 11px; color: var(--success); font-weight: 700;">WIFI PASSWORD</small>
-                <div id="wifiPass" style="font-size: 28px; font-weight: 800; color: #065f46; margin: 10px 0;">NET-SECURE</div>
-                <button onclick="copyText()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; font-size: 13px; text-decoration: underline;">Salin Kode</button>
+            <h2 style="color: var(--success); margin-bottom: 10px;">Akses Berhasil!</h2>
+            <div class="pass-display">
+                <small style="font-size: 11px; color: var(--success); font-weight: 800;">PASSWORD HARI INI</small>
+                <div id="wifiPass" style="font-size: 30px; font-weight: 800; color: #065f46; letter-spacing: 2px; margin: 10px 0;">---</div>
+                <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; font-size:13px; text-decoration:underline;">Salin Password</button>
             </div>
-            <div class="ad-space">ADSENSE AD BOTTOM</div>
+            <div class="ad-placeholder">UNIT IKLAN HASIL</div>
         </div>
     </div>
 
-    <div class="content-section">
-        <h2>🛡️ Cyber Security Insights</h2>
+    <div class="content-card">
+        <h2>🛡️ Pusat Literasi Cyber Security</h2>
 
-        <div class="article-item">
-            <span class="badge">Keamanan Jaringan</span>
-            <h3>Mengapa Anda Harus Selalu Menggunakan VPN di WiFi Publik?</h3>
-            <p>WiFi publik seringkali menjadi target utama serangan <i>Man-in-the-Middle</i> (MitM). Tanpa perlindungan, peretas dapat mengintip lalu lintas data Anda, termasuk kata sandi dan informasi kartu kredit. Menggunakan Virtual Private Network (VPN) menciptakan terowongan terenkripsi yang melindungi data Anda dari mata-mata digital.</p>
+        <div class="article-entry">
+            <span class="badge-topic">Keamanan Jaringan</span>
+            <h3>Kenapa "WiFi Gratis" Tidak Pernah Benar-Benar Gratis?</h3>
+            <p>Banyak orang tidak menyadari bahwa jaringan WiFi publik adalah medan perburuan bagi para peretas. Teknik seperti <i>Packet Sniffing</i> memungkinkan siapa saja yang berada di jaringan yang sama untuk menangkap data mentah yang Anda kirimkan.</p>
+            <p>Penting bagi Anda untuk memahami bahwa portal ini menggunakan mekanisme verifikasi untuk memastikan bahwa setiap koneksi yang masuk terdaftar secara legal di sistem kami, meminimalisir risiko penyusupan oleh pihak ketiga.</p>
         </div>
 
-        <div class="article-item">
-            <span class="badge">Edukasi Malware</span>
-            <h3>Mengenal Ancaman Ransomware di Era Digital</h3>
-            <p>Ransomware adalah jenis perangkat lunak berbahaya yang mengunci data Anda dan meminta tebusan. Untuk menghindarinya, selalu pastikan sistem operasi Anda diperbarui ke versi terbaru dan jangan pernah mengeklik tautan asing di email yang mencurigakan (Phishing).</p>
+        <div class="article-entry">
+            <span class="badge-topic">Privasi & Data</span>
+            <h3>Langkah Krusial Melindungi Jejak Digital Anda</h3>
+            <p>Data adalah mata uang baru di dunia internet. Untuk menjaga privasi, pastikan Anda menggunakan mode <i>Incognito</i> atau <i>Private Browsing</i> saat menggunakan WiFi umum. Hal ini mencegah browser menyimpan riwayat pencarian dan data login Anda yang rentan disalahgunakan.</p>
+            <p>Selain itu, hindari mengeklik iklan pop-up yang menjanjikan hadiah instan karena seringkali itu adalah kedok untuk serangan <i>Drive-by Download</i>, di mana perangkat lunak berbahaya otomatis terunduh ke ponsel Anda.</p>
         </div>
 
-        <div class="article-item">
-            <span class="badge">Tips Keamanan</span>
-            <h3>Pentingnya Autentikasi Dua Faktor (2FA)</h3>
-            <p>Kata sandi saja tidak cukup. Dengan mengaktifkan 2FA, Anda menambahkan lapisan pertahanan kedua. Bahkan jika peretas mengetahui kata sandi Anda, mereka tetap tidak bisa masuk tanpa kode verifikasi tambahan yang dikirimkan ke perangkat fisik Anda.</p>
+        <div class="article-entry">
+            <span class="badge-topic">Tren Teknologi</span>
+            <h3>Keamanan Masa Depan: Pentingnya VPN dan Enkripsi</h3>
+            <p>Enkripsi adalah proses mengubah data menjadi kode yang tidak bisa dibaca tanpa kunci khusus. Di era sekarang, menggunakan layanan VPN (Virtual Private Network) saat terhubung ke WiFi publik bukan lagi pilihan, melainkan keharusan untuk mengenkripsi jalur komunikasi data Anda secara menyeluruh.</p>
         </div>
 
-        <div class="article-item">
-            <span class="badge">Privasi Data</span>
-            <h3>Cara Mendeteksi Situs Web yang Tidak Aman</h3>
-            <p>Selalu periksa keberadaan protokol HTTPS pada alamat website yang Anda kunjungi. Tanda gembok di browser menunjukkan bahwa komunikasi antara perangkat Anda dan server telah dienkripsi menggunakan sertifikat SSL/TLS, meminimalisir risiko pencurian data.</p>
-        </div>
-
-        <p style="font-size: 11px; text-align: center; color: #94a3b8; padding-top: 10px;">
-            &copy; 2026 NetFree Secure Portal. Dipasok oleh Informasi Keamanan Terkini.
+        <p style="font-size: 11px; text-align: center; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 20px;">
+            &copy; 2026 NetFree Secure Portal. Informasi ini disusun untuk meningkatkan kesadaran keamanan digital pengguna.
         </p>
     </div>
 </div>
 
 <script>
-    function startProcess() {
+    function startLoading() {
         document.getElementById('view1').classList.add('hidden');
         document.getElementById('view2').classList.remove('hidden');
         document.getElementById('s1').classList.replace('active', 'done');
@@ -229,11 +197,11 @@
         document.getElementById('s2').classList.add('active');
 
         let sec = 15;
-        const count = setInterval(() => {
+        const countdown = setInterval(() => {
             sec--;
             document.getElementById('timer').innerText = sec;
             if (sec <= 0) {
-                clearInterval(count);
+                clearInterval(countdown);
                 document.getElementById('btnGet').disabled = false;
             }
         }, 1000);
@@ -246,15 +214,16 @@
         document.getElementById('s2').innerText = '✓';
         document.getElementById('s3').classList.add('done');
 
+        // Logic password berdasarkan tanggal hari ini
         const d = new Date();
-        const code = (d.getDate() * 77) + d.getFullYear();
-        document.getElementById('wifiPass').innerText = "SECURE-" + code;
+        const code = (d.getDate() * 11) + (d.getFullYear());
+        document.getElementById('wifiPass').innerText = "SEC-" + code;
     }
 
-    function copyText() {
-        const text = document.getElementById('wifiPass').innerText;
-        navigator.clipboard.writeText(text);
-        alert("Password berhasil disalin!");
+    function copyPass() {
+        const pass = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(pass);
+        alert("Password berhasil disalin! Hubungkan sekarang.");
     }
 </script>
 
