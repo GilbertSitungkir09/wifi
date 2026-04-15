@@ -10,14 +10,13 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
     <style>
-        /* CSS TOTAL: Membereskan semua bug tampilan */
+        /* CSS RESET & MODERN DESIGN */
         :root {
             --primary: #4f46e5;
             --secondary: #7c3aed;
             --success: #10b981;
             --text-main: #1e293b;
             --text-sub: #64748b;
-            --bg-body: #f8fafc;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,7 +50,7 @@
             border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* IKLAN BOX */
+        /* IKLAN PLACEHOLDER */
         .ad-placeholder {
             background: #f1f5f9;
             border: 1px dashed #cbd5e1;
@@ -111,6 +110,135 @@
             padding: 30px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
+        .article-card h2 { font-size: 18px; margin-bottom: 12px; color: #0f172a; border-left: 4px solid var(--primary); padding-left: 10px; }
+        .article-card h3 { font-size: 16px; margin: 15px 0 10px; }
+        .article-card p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 15px; }
+        .quote-box { background: #f8fafc; padding: 15px; border-radius: 12px; font-style: italic; border-left: 4px solid #94a3b8; margin: 20px 0; }
+
+        .hidden { display: none !important; }
+        .timer-txt { color: #ef4444; font-weight: 800; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <div class="steps">
+            <div id="s1" class="step active">1</div>
+            <div id="s2" class="step">2</div>
+            <div id="s3" class="step">✓</div>
+        </div>
+
+        <div id="view1">
+            <h1 style="font-size: 22px; text-align: center; margin-bottom: 10px;">Akses WiFi Terproteksi</h1>
+            <p style="font-size: 13px; text-align: center; color: var(--text-sub); margin-bottom: 20px;">
+                Portal ini memastikan akses internet Anda aman. Silakan verifikasi untuk mendapatkan password hari ini.
+            </p>
+            <div class="ad-placeholder">
+                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <button class="btn-main" onclick="startProcess()">Dapatkan Password WiFi</button>
+        </div>
+
+        <div id="view2" class="hidden">
+            <p style="text-align:center; font-size: 14px;">Memproses Keamanan Jaringan...</p>
+            <div class="ad-placeholder" style="min-height: 250px;">
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p style="text-align:center; font-size: 13px; margin-bottom: 15px;">
+                Mohon tunggu <span id="timer" class="timer-txt">15</span> detik...
+            </p>
+            <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Ambil Password Sekarang</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <h2 style="text-align:center; color: var(--success); margin-bottom: 15px;">Verifikasi Berhasil!</h2>
+            <div class="pass-display">
+                <small style="font-weight: 700; color: #166534; font-size: 11px;">KODE AKSES HARI INI</small>
+                <div id="wifiPass" class="pass-code">---</div>
+                <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer;">Salin Password</button>
+            </div>
+            <p style="font-size: 13px; color: var(--text-sub); text-align: center; margin-top: 20px; line-height: 1.5;">
+                Demi keamanan bersama, password ini akan <b>diperbarui otomatis tepat pada pukul 00:00 WIB</b> setiap harinya. Silakan mampir lagi besok untuk mendapatkan akses baru!
+            </p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Ngobrol Santai: Dari Mana Sih Asalnya Internet?</h2>
+        <p>
+            Pernah bayangin nggak kalau hidup tanpa internet sehari aja? Pasti berasa ada yang kurang banget. Tapi tau nggak, dulunya internet itu cuma proyek militer rahasia sekitar tahun 1960-an namanya <b>ARPANET</b>.
+        </p>
+        <p>
+            Awalnya, para ilmuwan cuma pengen komputer-komputer penting bisa tetep "ngobrol" kalau seandainya ada gangguan besar. Jadi, teknologi canggih yang kita pake sekarang ini sebenernya lahir dari kondisi yang cukup mendesak buat pertahanan.
+        </p>
+
+        <div class="quote-box">
+            "Internet itu kayak perpustakaan raksasa yang nggak pernah tutup. Kuncinya ada di kita: mau dipake buat cari ilmu, atau cuma numpang lewat?"
+        </div>
+
+        <h3>Gimana Sih WiFi Bisa Kerja?</h3>
+        <p>
+            Simpelnya, WiFi itu pake gelombang radio buat kirim data tanpa kabel. Gelombang ini dikirim sama router lewat frekuensi tertentu, biasanya 2.4 GHz atau 5 GHz. Router di sini tugasnya nerjemahin data dari kabel internet jadi sinyal yang bisa ditangkep sama HP kamu.
+        </p>
+
+        <h3>Kenapa Password Selalu Ganti?</h3>
+        <p>
+            Sistem kami mengganti password secara otomatis setiap tengah malam untuk menjaga stabilitas jaringan dan mencegah penggunaan berlebihan yang bisa bikin internet jadi lemot buat pengguna lain.
+        </p>
+
+        <p style="font-size: 11px; text-align: center; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 20px; margin-top: 20px;">
+            &copy; 2026 NetFree Portal - Solusi Internet Terpercaya.
+        </p>
+    </div>
+
+</div>
+
+<script>
+    // FUNGSI JAVASCRIPT
+    function startProcess() {
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        document.getElementById('s1').classList.add('done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        let sec = 15;
+        const interval = setInterval(() => {
+            sec--;
+            document.getElementById('timer').innerText = sec;
+            if (sec <= 0) {
+                clearInterval(interval);
+                document.getElementById('btnGet').disabled = false;
+            }
+        }, 1000);
+    }
+
+    function showResult() {
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        document.getElementById('s2').classList.add('done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+
+        // Logika pembuatan password harian otomatis
+        const d = new Date();
+        const dailyCode = (d.getFullYear() + (d.getMonth() + 1) + d.getDate()) * 1234 % 9000 + 1000;
+        document.getElementById('wifiPass').innerText = "WIFI-FREE-" + dailyCode;
+    }
+
+    function copyPass() {
+        const pass = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(pass);
+        alert("Password berhasil disalin ke clipboard!");
+    }
+</script>
+
+</body>
+</html>
         .article-card h2 { font-size: 18px; margin-bottom: 12px; color: #0f172a; border-left: 4px solid var(--primary); padding-left: 10px; }
         .article-card h3 { font-size: 16px; margin: 15px 0 10px; }
         .article-card p { font-size: 14px; color: #475569; line-height: 1.7; margin-bottom: 15px; }
