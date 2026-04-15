@@ -12,10 +12,9 @@
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .card { background: white; width: 90%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 25px; text-align: center; }
         
-        /* Iklan Placeholder */
         .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; margin: 15px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #94a3b8; overflow: hidden; }
 
-        .icon-box { background: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px; }
+        .icon-box { background: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px; font-size: 24px; }
         h2 { margin: 10px 0 5px; font-size: 22px; }
         .subtitle { color: #64748b; font-size: 14px; margin-bottom: 20px; }
         
@@ -23,20 +22,25 @@
         .step { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 14px; background: white; z-index: 2; }
         .step.active { border-color: var(--primary); color: var(--primary); font-weight: bold; }
         .step.check { background: var(--primary); border-color: var(--primary); color: white; }
-        .line { height: 2px; background: #e2e8f0; width: 80px; margin: 0 10px; }
+        .line { height: 2px; background: #e2e8f0; width: 60px; margin: 0 5px; }
 
         .btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
         .btn:disabled { background: #94a3b8; cursor: not-allowed; }
         
         .pass-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; padding: 20px; margin: 20px 0; }
         .pass-text { font-size: 28px; font-weight: 800; color: #166534; letter-spacing: 2px; margin: 10px 0; }
-        .timer-text { font-weight: bold; color: #ef4444; }
+        
+        /* Style Tambahan Waktu */
+        .status-bar { background: #f1f5f9; border-radius: 8px; padding: 10px; display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .timer-red { font-weight: bold; color: #ef4444; }
         .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <div class="card">
+        <div id="realtime-clock" style="font-size: 12px; color: #94a3b8; margin-bottom: 10px; text-align: right;">00:00:00 WIB</div>
+
         <div class="ad-slot">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_ATAS" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -51,94 +55,40 @@
             <div class="line"></div>
             <div id="s2" class="step">2</div>
             <div class="line"></div>
-            <div class="step">✓</div>
+            <div id="s3" class="step">✓</div>
         </div>
 
         <div id="view1">
-            <button class="btn" onclick="startLoading()">Lanjut & Tonton Iklan →</button>
+            <button class="btn" onclick="startAds()">Lanjut & Tonton Iklan →</button>
         </div>
 
         <div id="view2" class="hidden">
-            <p>Iklan sedang dimuat...</p>
             <div class="ad-slot" style="min-height: 250px;">
                 <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_TENGAH"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
-            <p class="subtitle">Tunggu <span id="timer" class="timer-text">15</span> detik untuk mengambil password</p>
+            <p class="subtitle">Silakan tunggu <span id="ad-timer" class="timer-red">15</span> detik...</p>
             <button id="btnGetPass" class="btn" disabled onclick="showPassword()">Dapatkan Password →</button>
         </div>
 
         <div id="view3" class="hidden">
             <div style="font-size: 40px;">🎉</div>
             <h3 style="color:#16a34a; margin: 5px 0;">Akses Berhasil!</h3>
-            <p class="subtitle">Gunakan password ini untuk connect WiFi</p>
             
-            <div class="pass-box">
-                <small style="color:#166534; font-weight:bold;">PASSWORD WIFI HARI INI</small>
-                <div class="pass-text" id="wifiPass">WIFI-PAGI-8741</div>
-                <button onclick="copyPass()" style="background:#fff; border:1px solid #d1d5db; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px;">📋 Salin Password</button>
+            <div class="status-bar">
+                <span>Berlaku hingga:</span>
+                <span class="timer-red" id="reset-timer">00:00:00</span>
             </div>
 
-            <div style="font-size: 12px; color: #64748b; background: #f1f5f9; padding: 10px; border-radius: 8px;">
-                💡 Password berlaku sampai tengah malam. Besok password berganti otomatis — tonton iklan lagi untuk password baru.
+            <div class="pass-box">
+                <small style="color:#166534; font-weight:bold;">PASSWORD WIFI HARI INI</small>
+                <div class="pass-text" id="wifiPass">WIFI-PAGI-XXXX</div>
+                <button onclick="copyPass()" style="background:#fff; border:1px solid #d1d5db; padding:5px 15px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600;">📋 Salin Password</button>
             </div>
+
+            <p class="subtitle" style="font-size: 12px;">Password otomatis berganti pada pukul 00:00 WIB setiap harinya.</p>
         </div>
 
         <div class="ad-slot" style="margin-top: 20px;">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_BAWAH" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        
-        <p style="font-size: 10px; color: #cbd5e1; margin-top: 15px;">Powered by WiFiAds</p>
-    </div>
-
-    <script>
-        let count = 15;
-        let timer;
-
-        function startLoading() {
-            document.getElementById('view1').classList.add('hidden');
-            document.getElementById('view2').classList.remove('hidden');
-            document.getElementById('s1').classList.add('check');
-            document.getElementById('s1').innerText = '✓';
-            document.getElementById('s2').classList.add('active');
-
-            timer = setInterval(() => {
-                count--;
-                document.getElementById('timer').innerText = count;
-                if (count <= 0) {
-                    clearInterval(timer);
-                    document.getElementById('btnGetPass').disabled = false;
-                    document.getElementById('timer').parentElement.innerText = "Iklan selesai! Silakan ambil password.";
-                }
-            }, 1000);
-        }
-
-        function showPassword() {
-            document.getElementById('view2').classList.add('hidden');
-            document.getElementById('view3').classList.remove('hidden');
-            document.getElementById('s2').classList.add('check');
-            document.getElementById('s2').innerText = '✓';
-            generateDailyPassword();
-        }
-
-        function generateDailyPassword() {
-            const now = new Date();
-            // Logika ganti password tiap tanggal (reset jam 12 malam)
-            const dateString = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-            
-            // Seed sederhana berdasarkan tanggal agar semua user dapat pass yang sama di hari itu
-            let seed = dateString.split('-').join('');
-            let passCode = (parseInt(seed) * 1234 % 9000) + 1000;
-            
-            document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + passCode;
-        }
-
-        function copyPass() {
-            const pass = document.getElementById('wifiPass').innerText;
-            navigator.clipboard.writeText(pass);
-            alert("Password disalin!");
-        }
-    </script>
-</body>
-</html>
+            <script>(adsby
