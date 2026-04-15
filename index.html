@@ -3,114 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium WiFi Access Portal</title>
+    <title>NetFree Portal - Akses WiFi & Edukasi</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
     <style>
-        /* PERBAIKAN: Semua kode CSS harus berada di sini, di dalam tag style */
         :root {
-            --primary: #4f46e5; /* Ungu Modern */
-            --primary-dark: #4338ca;
-            --secondary: #ec4899; /* Pink Aksent */
-            --success: #10b981;
-            --text-main: #1f2937;
-            --text-sub: #6b7280;
-            /* Latar belakang gradasi yang menarik */
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            /* Efek Kaca (Glassmorphism) */
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.5);
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --success: #22c55e;
+            --bg-gradient: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--bg-gradient);
-            background-attachment: fixed; /* Latar belakang tetap saat di-scroll */
-            color: var(--text-main);
+            background-attachment: fixed;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .main-wrapper {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            padding: 40px 20px;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        /* Kartu Utama dengan Efek Kaca */
+        /* Container Kartu WiFi */
         .card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px); /* Efek blur di belakang kartu */
-            -webkit-backdrop-filter: blur(10px);
+            background: var(--glass);
             width: 100%;
-            max-width: 420px;
-            border-radius: 28px;
-            padding: 35px;
+            max-width: 400px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            border: 1px solid var(--glass-border);
-            animation: cardFadeIn 0.6s ease-out;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        @keyframes cardFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Indikator Langkah (Progress Steps) */
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        .step-line {
-            position: absolute;
-            top: 50%; left: 0; right: 0;
-            height: 2px;
-            background: #e5e7eb;
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-
-        .step {
-            width: 36px; height: 36px;
-            border-radius: 50%;
-            background: white;
-            border: 2px solid #e5e7eb;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 14px; color: var(--text-sub);
-            z-index: 2; transition: all 0.3s ease;
-        }
-
-        .step.active {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: #eef2ff;
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
-        }
-
-        .step.done {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-
-        /* Iklan Placeholder/Container */
-        .ad-container {
-            background: rgba(243, 244, 246, 0.6);
-            border: 1px dashed #d1d5db;
-            border-radius: 16px;
-            margin: 20px 0;
+        /* Iklan Slot */
+        .ad-slot {
+            background: #f1f5f9;
+            border-radius: 12px;
+            margin: 15px 0;
             min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #cbd5e1;
+            overflow: hidden;
+        }
+
+        /* Progress Steps */
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+        }
+        .step {
+            width: 35px; height: 35px; border-radius: 50%;
+            background: #e2e8f0; display: flex; align-items: center;
+            justify-content: center; font-weight: bold; font-size: 14px;
+        }
+        .step.active { background: var(--primary); color: white; }
+        .step.done { background: var(--success); color: white; }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white; border: none; padding: 16px; border-radius: 14px;
+            width: 100%; font-size: 16px; font-weight: 600; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            transition: 0.3s;
+        }
+        .btn:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
+
+        /* Password Box */
+        .pass-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .pass-text { font-size: 24px; font-weight: 800; color: #1e293b; margin: 10px 0; letter-spacing: 2px; }
+
+        /* BAGIAN ARTIKEL (DI BAWAH KARTU) */
+        .article-card {
+            background: white;
+            width: 100%;
+            max-width: 700px;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            color: #475569;
+        }
+        .article-card h2 { color: #1e293b; margin-bottom: 15px; }
+        .article-card p { margin-bottom: 15px; font-size: 14px; }
+        .article-card ul { margin-left: 20px; margin-bottom: 20px; font-size: 14px; }
+
+        .hidden { display: none !important; }
+        .timer-val { color: #ef4444; font-weight: 800; }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    
+    <div class="card">
+        <div class="ad-slot">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="steps">
+            <div id="s1" class="step active">1</div>
+            <div id="s2" class="step">2</div>
+            <div id="s3" class="step">✓</div>
+        </div>
+
+        <div id="view1">
+            <h2 style="font-size: 22px; margin-bottom: 10px;">WiFi Terproteksi</h2>
+            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Klik tombol di bawah untuk memverifikasi akses dan mendapatkan password hari ini.</p>
+            <button class="btn" onclick="startLoading()">Buka Akses Sekarang</button>
+        </div>
+
+        <div id="view2" class="hidden">
+            <p style="font-size: 14px;">Memuat Iklan Verifikasi...</p>
+            <div class="ad-slot" style="min-height: 250px;">
+                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+            <p style="font-size: 13px;">Tunggu <span id="timer" class="timer-val">15</span> detik...</p>
+            <button id="btnGet" class="btn" onclick="showFinal()" disabled>Dapatkan Password</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <h2 style="color: var(--success);">Berhasil!</h2>
+            <div class="pass-box">
+                <small style="font-size: 10px; font-weight: 800; color: var(--primary);">PASSWORD HARI INI</small>
+                <div id="wifiPass" class="pass-text">---</div>
+                <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:600; cursor:pointer;">Salin Password</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Tips Menggunakan WiFi Publik dengan Aman</h2>
+        <p>Menggunakan layanan internet gratis sangat memudahkan produktivitas kita. Namun, sebagai pengguna yang bijak, kita harus tetap memperhatikan keamanan data pribadi.</p>
+        <ul>
+            <li><b>Gunakan VPN:</b> Membantu mengenkripsi data Anda agar tidak mudah disadap.</li>
+            <li><b>Hindari Transaksi Perbankan:</b> Jangan mengakses m-banking saat menggunakan jaringan umum.</li>
+            <li><b>Aktifkan Firewall:</b> Jaga sistem keamanan perangkat tetap aktif.</li>
+        </ul>
+        <h3>Kenapa Password Selalu Berganti?</h3>
+        <p>Sistem kami mengganti password secara otomatis setiap 24 jam untuk menjaga stabilitas jaringan dan mencegah penggunaan berlebihan (overload).</p>
+        <p style="font-size: 12px; border-top: 1px solid #eee; pt-10; mt-10;">&copy; 2026 NetFree Portal - Solusi Internet Gratis Terpercaya.</p>
+    </div>
+
+</div>
+
+<script>
+    function startLoading() {
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        document.getElementById('s1').classList.add('done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        let sec = 15;
+        const countdown = setInterval(() => {
+            sec--;
+            document.getElementById('timer').innerText = sec;
+            if (sec <= 0) {
+                clearInterval(countdown);
+                document.getElementById('btnGet').disabled = false;
+            }
+        }, 1000);
+    }
+
+    function showFinal() {
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        document.getElementById('s2').classList.add('done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+
+        const d = new Date();
+        const code = (d.getFullYear() + (d.getMonth() + 1) + d.getDate()) * 1234 % 9000 + 1000;
+        document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + code;
+    }
+
+    function copyPass() {
+        const p = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(p);
+        alert("Password disalin!");
+    }
+</script>
+
+</body>
+</html>
             display: flex; align-items: center; justify-content: center;
             overflow: hidden;
         }
