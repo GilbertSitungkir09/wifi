@@ -10,36 +10,53 @@
     <style>
         :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; width: 90%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 25px; text-align: center; }
+        .card { background: white; width: 90%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 25px; text-align: center; position: relative; z-index: 1; }
         
-        .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; margin: 15px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #94a3b8; overflow: hidden; }
+        /* Iklan Placeholder */
+        .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; margin: 15px 0; min-height: 100px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #94a3b8; overflow: hidden; position: relative; z-index: 5; }
 
         .icon-box { background: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px; font-size: 24px; }
         h2 { margin: 10px 0 5px; font-size: 22px; }
         .subtitle { color: #64748b; font-size: 14px; margin-bottom: 20px; }
         
+        /* Stepper */
         .step-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; position: relative; }
-        .step { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 14px; background: white; z-index: 2; }
+        .step { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 14px; background: white; z-index: 2; transition: 0.3s; }
         .step.active { border-color: var(--primary); color: var(--primary); font-weight: bold; }
         .step.check { background: var(--primary); border-color: var(--primary); color: white; }
         .line { height: 2px; background: #e2e8f0; width: 60px; margin: 0 5px; }
 
-        .btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
-        .btn:disabled { background: #94a3b8; cursor: not-allowed; }
+        /* Button Fix */
+        .btn { 
+            background: var(--primary); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 12px; 
+            width: 100%; 
+            font-size: 16px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            display: block; /* Pastikan terlihat */
+            position: relative; 
+            z-index: 10; /* Pastikan paling atas agar bisa diklik */
+            transition: transform 0.1s, background 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+        .btn:active { transform: scale(0.98); background: #1d4ed8; }
+        .btn:disabled { background: #94a3b8; cursor: not-allowed; box-shadow: none; }
         
         .pass-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; padding: 20px; margin: 20px 0; }
         .pass-text { font-size: 28px; font-weight: 800; color: #166534; letter-spacing: 2px; margin: 10px 0; }
-        
-        /* Style Tambahan Waktu */
         .status-bar { background: #f1f5f9; border-radius: 8px; padding: 10px; display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
         .timer-red { font-weight: bold; color: #ef4444; }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <div id="realtime-clock" style="font-size: 12px; color: #94a3b8; margin-bottom: 10px; text-align: right;">00:00:00 WIB</div>
+        <div id="realtime-clock" style="font-size: 11px; color: #94a3b8; margin-bottom: 10px; text-align: right;">00:00:00 WIB</div>
 
         <div class="ad-slot">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_ATAS" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
@@ -59,7 +76,7 @@
         </div>
 
         <div id="view1">
-            <button class="btn" onclick="startAds()">Lanjut & Tonton Iklan →</button>
+            <button type="button" class="btn" onclick="startAds()">Lanjut & Tonton Iklan →</button>
         </div>
 
         <div id="view2" class="hidden">
@@ -67,28 +84,23 @@
                 <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_TENGAH"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
-            <p class="subtitle">Silakan tunggu <span id="ad-timer" class="timer-red">15</span> detik...</p>
-            <button id="btnGetPass" class="btn" disabled onclick="showPassword()">Dapatkan Password →</button>
+            <p class="subtitle" id="wait-msg">Silakan tunggu <span id="ad-timer" class="timer-red">15</span> detik...</p>
+            <button id="btnGetPass" type="button" class="btn" disabled onclick="showPassword()">Dapatkan Password →</button>
         </div>
 
         <div id="view3" class="hidden">
-            <div style="font-size: 40px;">🎉</div>
             <h3 style="color:#16a34a; margin: 5px 0;">Akses Berhasil!</h3>
-            
             <div class="status-bar">
                 <span>Berlaku hingga:</span>
                 <span class="timer-red" id="reset-timer">00:00:00</span>
             </div>
-
             <div class="pass-box">
-                <small style="color:#166534; font-weight:bold;">PASSWORD WIFI HARI INI</small>
-                <div class="pass-text" id="wifiPass">WIFI-PAGI-XXXX</div>
-                <button onclick="copyPass()" style="background:#fff; border:1px solid #d1d5db; padding:5px 15px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600;">📋 Salin Password</button>
+                <small style="color:#166534; font-weight:bold;">PASSWORD HARI INI</small>
+                <div class="pass-text" id="wifiPass">...</div>
+                <button type="button" onclick="copyPass()" style="background:#fff; border:1px solid #d1d5db; padding:8px 15px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600;">📋 Salin Password</button>
             </div>
-
-            <p class="subtitle" style="font-size: 12px;">Password otomatis berganti pada pukul 00:00 WIB setiap harinya.</p>
+            <p class="subtitle" style="font-size: 11px;">Password berganti otomatis pukul 00:00 WIB.</p>
         </div>
 
-        <div class="ad-slot" style="margin-top: 20px;">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="SLOT_BAWAH" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsby
+        <div class="ad-slot">
+            <ins
