@@ -1,117 +1,144 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiFi Gratis - Akses Internet</title>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <title>Password Access</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-    <style>
-        :root { --primary: #2563eb; --bg: #f8fafc; --text: #1e293b; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: white; width: 90%; max-width: 450px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 25px; text-align: center; }
-        
-        .ad-slot { background: #f1f5f9; border: 1px dashed #cbd5e1; margin: 15px 0; min-height: 100px; display: block; overflow: hidden; }
+    .container {
+      text-align: center;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
 
-        .icon-box { background: var(--primary); width: 50px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; color: white; margin-bottom: 15px; }
-        h2 { margin: 10px 0 5px; font-size: 22px; }
-        .subtitle { color: #64748b; font-size: 14px; margin-bottom: 20px; }
-        
-        /* Progress Step */
-        .step-container { display: flex; align-items: center; justify-content: center; margin-bottom: 30px; }
-        .step { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 14px; background: white; }
-        .step.active { border-color: var(--primary); color: var(--primary); font-weight: bold; }
-        .step.check { background: var(--primary); border-color: var(--primary); color: white; }
-        .line { height: 2px; background: #e2e8f0; width: 60px; margin: 0 10px; }
+    h1 {
+      margin-bottom: 10px;
+    }
 
-        .btn { background: var(--primary); color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .btn:disabled { background: #cbd5e1; cursor: not-allowed; }
-        
-        .pass-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; padding: 20px; margin: 20px 0; }
-        .pass-text { font-size: 26px; font-weight: 800; color: #166534; margin: 10px 0; }
-        
-        /* Helper Class */
-        .hidden { display: none !important; }
-    </style>
+    p {
+      color: #cbd5f5;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #22c55e;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      background: #334155;
+      border-radius: 5px;
+      margin-top: 15px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #22c55e;
+      transition: width 1s linear;
+    }
+
+    .password-box {
+      background: #334155;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="ad-slot">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+<div class="container" id="step1">
+  <h1>🔒 Akses Terbatas</h1>
+  <p>Tonton iklan untuk mendapatkan password</p>
+  <button onclick="startAd()">🎬 Dapatkan Password</button>
+</div>
 
-    <div class="icon-box">📶</div>
-    <h2>WiFi Gratis</h2>
-    <p class="subtitle">Tonton iklan untuk melihat password</p>
+<div class="container hidden" id="step2">
+  <h1>🎬 Iklan Diputar</h1>
+  <p>Mohon tunggu sampai selesai...</p>
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</div>
 
-    <div class="step-container">
-        <div id="s1" class="step active">1</div>
-        <div class="line"></div>
-        <div id="s2" class="step">2</div>
-        <div class="line"></div>
-        <div class="step">✓</div>
-    </div>
-
-    <div id="view1">
-        <button type="button" class="btn" onclick="goToStep2()">Lanjut & Tonton Iklan →</button>
-    </div>
-
-    <div id="view2" class="hidden">
-        <div class="ad-slot" style="min-height: 250px;">
-            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        <p id="msg" class="subtitle">Menunggu iklan... <span id="timer" style="color:red; font-weight:bold;">15</span> detik</p>
-        <button id="btnGetPass" class="btn" onclick="goToStep3()" disabled>Dapatkan Password →</button>
-    </div>
-
-    <div id="view3" class="hidden">
-        <div class="pass-box">
-            <small>PASSWORD HARI INI:</small>
-            <div id="wifiPass" class="pass-text">LOADING...</div>
-            <button onclick="copyText()" style="font-size: 12px; cursor: pointer;">Salin Password</button>
-        </div>
-    </div>
-
-    <div class="ad-slot">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="auto"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
+<div class="container hidden" id="step3">
+  <h1>✅ Berhasil!</h1>
+  <p>Password kamu:</p>
+  <div class="password-box" id="passwordText"></div>
+  <button onclick="copyPassword()">📋 Copy</button>
 </div>
 
 <script>
-    function goToStep2() {
-        // Pindah View
-        document.getElementById('view1').classList.add('hidden');
-        document.getElementById('view2').classList.remove('hidden');
-        
-        // Progress
-        document.getElementById('s1').classList.add('check');
-        document.getElementById('s1').innerText = '✓';
-        document.getElementById('s2').classList.add('active');
+  function startAd() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
 
-        // Jalankan Timer
-        let detik = 15;
-        const t = setInterval(() => {
-            detik--;
-            document.getElementById('timer').innerText = detik;
-            if (detik <= 0) {
-                clearInterval(t);
-                document.getElementById('btnGetPass').disabled = false;
-                document.getElementById('msg').innerText = "Iklan selesai! Silakan ambil password.";
-            }
-        }, 1000);
-    }
+    let progress = 0;
+    let bar = document.getElementById("progressBar");
 
-    function goToStep3() {
-        document.getElementById('view2').classList.add('hidden');
-        document.getElementById('view3').classList.remove('hidden');
-        
-        document.getElementById('s2').classList.add('check');
-        document.getElementById('s2').innerText = '✓';
+    let interval = setInterval(() => {
+      progress += 10;
+      bar.style.width = progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        showPassword();
+      }
+    }, 1000);
+  }
+
+  function showPassword() {
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("step3").classList.remove("hidden");
+
+    let password = generatePassword();
+    document.getElementById("passwordText").innerText = password;
+  }
+
+  function generatePassword() {
+    return Math.random().toString(36).substring(2, 10).toUpperCase();
+  }
+
+  function copyPassword() {
+    let text = document.getElementById("passwordText").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Password disalin!");
+  }
+</script>
+
+</body>
+</html>        document.getElementById('s2').innerText = '✓';
 
         // Generate Password
         const d = new Date();
