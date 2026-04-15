@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NetFree Portal - Solusi Akses WiFi Aman & Edukasi Digital</title>
     
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
+
     <meta name="description" content="Dapatkan akses WiFi gratis dengan protokol keamanan terenkripsi. Pelajari cara melindungi data pribadi Anda dari ancaman cyber di era digital.">
-    <meta name="keywords" content="WiFi gratis, keamanan digital, cyber security, VPN, privasi internet">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS TOTAL FIX - Mencegah kebocoran teks ke background */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         :root {
             --primary: #4f46e5;
             --secondary: #7c3aed;
@@ -25,7 +21,6 @@
             --dark-blue: #0f172a;
             --text-main: #1e293b;
             --text-sub: #64748b;
-            --bg-body: #f1f5f9;
         }
 
         body {
@@ -47,7 +42,6 @@
             gap: 25px;
         }
 
-        /* CARD STYLE - PORTAL UTAMA */
         .portal-card {
             background: rgba(255, 255, 255, 0.98);
             border-radius: 30px;
@@ -67,10 +61,10 @@
             width: 38px; height: 38px; border-radius: 50%;
             background: #e2e8f0; display: flex; align-items: center;
             justify-content: center; font-weight: 700; font-size: 14px;
-            color: #94a3b8; transition: all 0.4s ease;
+            color: #94a3b8;
         }
 
-        .step-node.active { background: var(--primary); color: white; transform: scale(1.15); box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4); }
+        .step-node.active { background: var(--primary); color: white; transform: scale(1.1); box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4); }
         .step-node.done { background: var(--success); color: white; }
 
         .btn-main {
@@ -78,12 +72,10 @@
             color: white; border: none; padding: 18px; border-radius: 18px;
             width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
             box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.5);
-            margin-top: 15px; transition: 0.2s;
+            margin-top: 15px;
         }
-        .btn-main:active { transform: scale(0.97); }
         .btn-main:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; }
 
-        /* ARTIKEL SECTION - HIGH QUALITY CONTENT */
         .content-card {
             background: #ffffff;
             border-radius: 28px;
@@ -94,7 +86,7 @@
         .content-card h2 {
             font-size: 20px; font-weight: 800; color: var(--dark-blue);
             margin-bottom: 25px; border-left: 5px solid var(--primary);
-            padding-left: 15px; line-height: 1.2;
+            padding-left: 15px;
         }
 
         .article-entry { margin-bottom: 30px; }
@@ -116,12 +108,8 @@
 
         .hidden { display: none !important; }
 
-        .ad-placeholder {
-            background: #f8fafc; border: 1px solid #e2e8f0;
-            min-height: 100px; margin: 20px 0; border-radius: 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; color: #94a3b8; font-style: italic;
-        }
+        /* Slot Iklan */
+        .ad-container { margin: 20px 0; min-height: 100px; display: flex; justify-content: center; }
     </style>
 </head>
 <body>
@@ -137,13 +125,33 @@
         <div id="view1">
             <h1 style="font-size: 24px; font-weight: 800; margin-bottom: 10px;">Secure Access</h1>
             <p style="font-size: 14px; color: var(--text-sub);">Dapatkan password WiFi Anda melalui enkripsi keamanan satu arah.</p>
-            <div class="ad-placeholder">UNIT IKLAN ATAS (728x90)</div>
+            
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9534373671983631"
+                     data-ad-slot="AUTO_TOP"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
             <button class="btn-main" onclick="startLoading()">Unlock Connection →</button>
         </div>
 
         <div id="view2" class="hidden">
             <p style="font-size: 15px; font-weight: 600;">Mengautentikasi Sinyal...</p>
-            <div class="ad-placeholder" style="min-height: 250px;">UNIT IKLAN TENGAH (300x250)</div>
+            
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9534373671983631"
+                     data-ad-slot="AUTO_MIDDLE"
+                     data-ad-format="rectangle"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
             <p style="font-size: 13px;">Tunggu <b id="timer" style="color:#ef4444">15</b> detik...</p>
             <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Terima Kunci Akses</button>
         </div>
@@ -155,7 +163,16 @@
                 <div id="wifiPass" style="font-size: 30px; font-weight: 800; color: #065f46; letter-spacing: 2px; margin: 10px 0;">---</div>
                 <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; font-size:13px; text-decoration:underline;">Salin Password</button>
             </div>
-            <div class="ad-placeholder">UNIT IKLAN HASIL</div>
+            
+            <div class="ad-container">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9534373671983631"
+                     data-ad-slot="AUTO_BOTTOM"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
         </div>
     </div>
 
@@ -166,24 +183,16 @@
             <span class="badge-topic">Keamanan Jaringan</span>
             <h3>Kenapa "WiFi Gratis" Tidak Pernah Benar-Benar Gratis?</h3>
             <p>Banyak orang tidak menyadari bahwa jaringan WiFi publik adalah medan perburuan bagi para peretas. Teknik seperti <i>Packet Sniffing</i> memungkinkan siapa saja yang berada di jaringan yang sama untuk menangkap data mentah yang Anda kirimkan.</p>
-            <p>Penting bagi Anda untuk memahami bahwa portal ini menggunakan mekanisme verifikasi untuk memastikan bahwa setiap koneksi yang masuk terdaftar secara legal di sistem kami, meminimalisir risiko penyusupan oleh pihak ketiga.</p>
         </div>
 
         <div class="article-entry">
             <span class="badge-topic">Privasi & Data</span>
             <h3>Langkah Krusial Melindungi Jejak Digital Anda</h3>
-            <p>Data adalah mata uang baru di dunia internet. Untuk menjaga privasi, pastikan Anda menggunakan mode <i>Incognito</i> atau <i>Private Browsing</i> saat menggunakan WiFi umum. Hal ini mencegah browser menyimpan riwayat pencarian dan data login Anda yang rentan disalahgunakan.</p>
-            <p>Selain itu, hindari mengeklik iklan pop-up yang menjanjikan hadiah instan karena seringkali itu adalah kedok untuk serangan <i>Drive-by Download</i>, di mana perangkat lunak berbahaya otomatis terunduh ke ponsel Anda.</p>
-        </div>
-
-        <div class="article-entry">
-            <span class="badge-topic">Tren Teknologi</span>
-            <h3>Keamanan Masa Depan: Pentingnya VPN dan Enkripsi</h3>
-            <p>Enkripsi adalah proses mengubah data menjadi kode yang tidak bisa dibaca tanpa kunci khusus. Di era sekarang, menggunakan layanan VPN (Virtual Private Network) saat terhubung ke WiFi publik bukan lagi pilihan, melainkan keharusan untuk mengenkripsi jalur komunikasi data Anda secara menyeluruh.</p>
+            <p>Data adalah mata uang baru di dunia internet. Untuk menjaga privasi, pastikan Anda menggunakan mode <i>Incognito</i> atau <i>Private Browsing</i> saat menggunakan WiFi umum. Hal ini mencegah browser menyimpan riwayat pencarian Anda.</p>
         </div>
 
         <p style="font-size: 11px; text-align: center; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 20px;">
-            &copy; 2026 NetFree Secure Portal. Informasi ini disusun untuk meningkatkan kesadaran keamanan digital pengguna.
+            &copy; 2026 NetFree Secure Portal.
         </p>
     </div>
 </div>
@@ -214,7 +223,6 @@
         document.getElementById('s2').innerText = '✓';
         document.getElementById('s3').classList.add('done');
 
-        // Logic password berdasarkan tanggal hari ini
         const d = new Date();
         const code = (d.getDate() * 11) + (d.getFullYear());
         document.getElementById('wifiPass').innerText = "SEC-" + code;
@@ -223,7 +231,7 @@
     function copyPass() {
         const pass = document.getElementById('wifiPass').innerText;
         navigator.clipboard.writeText(pass);
-        alert("Password berhasil disalin! Hubungkan sekarang.");
+        alert("Password berhasil disalin!");
     }
 </script>
 
