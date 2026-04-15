@@ -21,11 +21,12 @@
         .step.check { background: var(--primary); border-color: var(--primary); color: white; }
         .line { height: 2px; background: #e2e8f0; width: 80px; margin: 0 10px; }
         .btn { background: var(--primary); color: white; border: none; padding: 14px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; }
+        .btn:hover { background: #1d4ed8; }
         .btn:disabled { background: #94a3b8; cursor: not-allowed; }
         .pass-box { background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; padding: 20px; margin: 20px 0; }
         .pass-text { font-size: 28px; font-weight: 800; color: #166534; letter-spacing: 2px; margin: 10px 0; }
         .timer-text { font-weight: bold; color: #ef4444; }
-        .hidden { display: none; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
@@ -35,7 +36,7 @@
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-9534373671983631"
-                 data-ad-slot="ISI_NOMOR_SLOT_DISINI"
+                 data-ad-slot="1234567890" 
                  data-ad-format="horizontal"
                  data-full-width-responsive="true"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -54,7 +55,7 @@
         </div>
 
         <div id="view1">
-            <button class="btn" onclick="startLoading()">Lanjut & Tonton Iklan →</button>
+            <button type="button" class="btn" onclick="startLoading()">Lanjut & Tonton Iklan →</button>
         </div>
 
         <div id="view2" class="hidden">
@@ -63,7 +64,42 @@
                 <ins class="adsbygoogle"
                      style="display:inline-block;width:300px;height:250px"
                      data-ad-client="ca-pub-9534373671983631"
-                     data-ad-slot="ISI_NOMOR_SLOT_DISINI"></ins>
+                     data-ad-slot="1234567890"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
-            <p class="subtitle">Tunggu <span id="timer" class="
+            <p id="timerMessage" class="subtitle">Tunggu <span id="timer" class="timer-text">15</span> detik untuk mengambil password</p>
+            <button id="btnGetPass" class="btn" disabled onclick="showPassword()">Dapatkan Password →</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <div style="font-size: 40px;">🎉</div>
+            <h3 style="color:#16a34a; margin: 5px 0;">Akses Berhasil!</h3>
+            <div class="pass-box">
+                <small style="color:#166534; font-weight:bold;">PASSWORD WIFI HARI INI</small>
+                <div class="pass-text" id="wifiPass">...</div>
+                <button onclick="copyPass()" style="background:#fff; border:1px solid #d1d5db; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px;">📋 Salin Password</button>
+            </div>
+        </div>
+
+        <div class="ad-slot" style="margin-top: 20px;">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9534373671983631"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        
+        <p style="font-size: 10px; color: #cbd5e1; margin-top: 15px;">Powered by WiFiAds</p>
+    </div>
+
+    <script>
+        function startLoading() {
+            // Sembunyikan view 1, tampilkan view 2
+            document.getElementById('view1').classList.add('hidden');
+            document.getElementById('view2').classList.remove('hidden');
+            
+            // Update Progress bar
+            document.getElementById('s1').classList.add('check');
+            document.getElementById('s
