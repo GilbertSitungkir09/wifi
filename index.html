@@ -1,107 +1,220 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akses Password</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium WiFi Access</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #0f172a, #020617);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --success: #22c55e;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --glass: rgba(255, 255, 255, 0.95);
+        }
 
-/* CARD */
-.card {
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 20px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 0 25px rgba(0,0,0,0.6);
-  animation: fadeIn 0.5s ease;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: #1e293b;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-h1 {
-  margin-bottom: 10px;
-}
+        .card {
+            background: var(--glass);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            padding: 30px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: fadeIn 0.5s ease-out;
+        }
 
-p {
-  color: #cbd5e1;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* BUTTON */
-button {
-  margin-top: 20px;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  background: #22c55e;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-}
+        /* Iklan Container */
+        .ad-container {
+            background: #f1f5f9;
+            border-radius: 12px;
+            margin: 20px 0;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #cbd5e1;
+            overflow: hidden;
+        }
 
-button:hover {
-  background: #16a34a;
-}
+        /* Icons & Text */
+        .wifi-icon {
+            font-size: 50px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
 
-/* PROGRESS */
-.progress {
-  width: 100%;
-  height: 10px;
-  background: #334155;
-  border-radius: 5px;
-  margin-top: 15px;
-  overflow: hidden;
-}
+        h2 { font-weight: 800; margin: 10px 0; letter-spacing: -1px; }
+        p.subtitle { color: #64748b; font-size: 14px; line-height: 1.6; }
 
-.progress-bar {
-  height: 100%;
-  width:      if (progress >= 100) {
-        clearInterval(interval);
-        showPassword();
-      }
-    }, 1000);
-  }
+        /* Steps */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        .step {
+            width: 35px; height: 35px; border-radius: 50%;
+            background: #e2e8f0; display: flex; align-items: center;
+            justify-content: center; font-weight: bold; font-size: 14px;
+            z-index: 2; transition: 0.3s;
+        }
+        .step.active { background: var(--primary); color: white; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+        .step.done { background: var(--success); color: white; }
 
-  function showPassword() {
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("step3").classList.remove("hidden");
+        /* Buttons */
+        .btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white; border: none; padding: 16px; border-radius: 14px;
+            width: 100%; font-size: 16px; font-weight: 600; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+        .btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 15px 25px rgba(99, 102, 241, 0.3); }
+        .btn:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
 
-    let password = generatePassword();
-    document.getElementById("passwordText").innerText = password;
-  }
+        /* Password Box */
+        .pass-box {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .pass-label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
+        .pass-text { font-size: 24px; font-weight: 800; color: #1e293b; margin: 10px 0; font-family: monospace; }
 
-  function generatePassword() {
-    return Math.random().toString(36).substring(2, 10).toUpperCase();
-  }
+        .hidden { display: none !important; }
+        .timer-val { color: #ef4444; font-weight: 800; }
+    </style>
+</head>
+<body>
 
-  function copyPassword() {
-    let text = document.getElementById("passwordText").innerText;
-    navigator.clipboard.writeText(text);
-    alert("Password disalin!");
-  }
-</script>
+<div class="card">
+    <div class="ad-container">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
 
-</body>
-</html>        document.getElementById('s2').innerText = '✓';
+    <div class="steps">
+        <div id="s1" class="step active">1</div>
+        <div id="s2" class="step">2</div>
+        <div id="s3" class="step">3</div>
+    </div>
 
-        // Generate Password
+    <div id="view1">
+        <div class="wifi-icon">📶</div>
+        <h2>WiFi Terproteksi</h2>
+        <p class="subtitle">Klik tombol di bawah untuk memverifikasi akses dan mendapatkan password hari ini.</p>
+        <button class="btn" onclick="startProcess()">Buka Akses Sekarang</button>
+    </div>
+
+    <div id="view2" class="hidden">
+        <p class="subtitle">Verifikasi sedang berlangsung...</p>
+        <div class="ad-container" style="min-height: 250px;">
+            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+        <p id="timerMsg" class="subtitle">Mohon tunggu <span id="timer" class="timer-val">15</span> detik...</p>
+        <button id="btnGet" class="btn" onclick="showFinal()" disabled>Dapatkan Password</button>
+    </div>
+
+    <div id="view3" class="hidden">
+        <div style="font-size: 40px;">✅</div>
+        <h2>Akses Terbuka!</h2>
+        <p class="subtitle">Silakan gunakan password di bawah ini pada perangkat Anda.</p>
+        
+        <div class="pass-box">
+            <div class="pass-label">Password WiFi</div>
+            <div id="wifiPass" class="pass-text">---</div>
+            <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:600; cursor:pointer; font-size:13px;">
+                <i class="far fa-copy"></i> Salin Password
+            </button>
+        </div>
+        <p class="subtitle" style="font-size: 11px; margin-top: 15px;">*Password akan berganti otomatis besok pagi.</p>
+    </div>
+
+    <div class="ad-container" style="margin-top: 25px;">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+</div>
+
+<script>
+    function startProcess() {
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        document.getElementById('s1').classList.add('done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        let timeLeft = 15;
+        const timerHtml = document.getElementById('timer');
+        const btnGet = document.getElementById('btnGet');
+        const timerMsg = document.getElementById('timerMsg');
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerHtml.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                btnGet.disabled = false;
+                timerMsg.innerHTML = "Verifikasi selesai! Klik tombol di bawah.";
+            }
+        }, 1000);
+    }
+
+    function showFinal() {
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        document.getElementById('s2').classList.add('done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+        document.getElementById('s3').innerText = '✓';
+
+        generatePass();
+    }
+
+    function generatePass() {
         const d = new Date();
-        const code = (d.getFullYear() + (d.getMonth()+1) + d.getDate()) * 1234 % 9000 + 1000;
+        const seed = d.getFullYear() + (d.getMonth() + 1) + d.getDate();
+        const code = (seed * 1234 % 9000) + 1000;
         document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + code;
     }
 
-    function copyText() {
-        const text = document.getElementById('wifiPass').innerText;
-        navigator.clipboard.writeText(text);
+    function copyPass() {
+        const p = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(p);
         alert("Password berhasil disalin!");
     }
 </script>
