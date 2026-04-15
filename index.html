@@ -3,114 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NetFree Portal - Akses WiFi & Edukasi</title>
+    <title>NetFree Portal</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-        /* RESET & BASE STYLES */
-        :root {
-            --primary: #4f46e5;
-            --secondary: #7c3aed;
-            --success: #10b981;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
-            --bg-card: rgba(255, 255, 255, 0.98);
+        /* CSS RESET - Mencegah kebocoran teks */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
+        :root {
+            --primary: #5849ff;
+            --secondary: #8a49ff;
+            --success: #10b981;
+            --bg-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            background: var(--bg-gradient);
             background-attachment: fixed;
-            color: var(--text-main);
+            color: var(--text-dark);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
             padding: 20px 15px;
         }
 
-        .container {
+        .main-wrapper {
             width: 100%;
-            max-width: 400px; /* Ukuran pas untuk mobile */
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* CARD STYLE */
-        .card {
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        /* CARD UTAMA */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 28px;
+            padding: 35px 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             text-align: center;
-            overflow: hidden; /* Mencegah teks meluap */
+            z-index: 10;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
         /* STEPS INDICATOR */
-        .steps {
+        .step-container {
             display: flex;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 30px;
         }
-        .step {
-            width: 35px; height: 35px; border-radius: 50%;
-            background: #e2e8f0; display: flex; align-items: center;
-            justify-content: center; font-weight: 700; font-size: 14px;
+
+        .step-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            color: #94a3b8;
             transition: all 0.3s ease;
         }
-        .step.active { background: var(--primary); color: white; transform: scale(1.1); }
-        .step.done { background: var(--success); color: white; }
 
-        /* BUTTONS */
-        .btn-main {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white; border: none; padding: 16px; border-radius: 14px;
-            width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
-            box-shadow: 0 8px 15px rgba(99, 102, 241, 0.3);
-            margin-top: 15px;
-            transition: transform 0.2s;
+        .step-circle.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 10px rgba(88, 73, 255, 0.3);
         }
-        .btn-main:active { transform: scale(0.98); }
-        .btn-main:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
 
-        /* PASSWORD BOX */
-        .pass-display {
+        .step-circle.done {
+            background: var(--success);
+            color: white;
+        }
+
+        /* TOMBOL UTAMA */
+        .btn-action {
+            width: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            transition: transform 0.2s active;
+        }
+
+        .btn-action:disabled {
+            background: #cbd5e1;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* INFO AREA */
+        .article-box {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .article-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+            text-align: left;
+        }
+
+        .article-text {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            text-align: left;
+        }
+
+        /* KODE PASSWORD */
+        .pass-result {
             background: #f0fdf4;
-            border: 2px dashed #bbf7d0;
+            border: 2px dashed #10b981;
             border-radius: 18px;
             padding: 20px;
-            margin-top: 15px;
-        }
-        .pass-code {
-            font-size: 26px; font-weight: 800; color: #166534;
-            font-family: 'Courier New', monospace; letter-spacing: 2px; margin: 10px 0;
+            margin: 20px 0;
         }
 
-        /* ARTICLE BOX */
-        .article-card {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        .pass-code {
+            font-size: 28px;
+            font-weight: 800;
+            color: #065f46;
+            letter-spacing: 3px;
+            margin: 10px 0;
         }
-        .article-card h2 { 
-            font-size: 18px; 
-            margin-bottom: 12px; 
-            border-left: 4px solid var(--primary); 
-            padding-left: 10px; 
-            text-align: left; 
-            color: var(--text-main);
+
+        .hidden { display: none !important; }
+
+        .ad-box {
+            width: 100%;
+            height: 100px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #94a3b8;
         }
-        .article-card p { 
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="glass-card">
+        <div class="step-container">
+            <div id="s1" class="step-circle active">1</div>
+            <div id="s2" class="step-circle">2</div>
+            <div id="s3" class="step-circle">✓</div>
+        </div>
+
+        <div id="view1">
+            <h1 class="brand-name">NetFree WiFi</h1>
+            <p class="subtitle">Verifikasi diperlukan untuk mendapatkan akses internet gratis hari ini.</p>
+            <div class="ad-box">IKLAN SPONSOR</div>
+            <button class="btn-action" onclick="toLoading()">Dapatkan Password WiFi →</button>
+        </div>
+
+        <div id="view2" class="hidden">
+            <h2 style="font-size: 18px;">Menyiapkan Jalur...</h2>
+            <div class="ad-box" style="height: 200px;">IKLAN VIDEO / BANNER</div>
+            <p style="font-size: 14px;">Tunggu <span id="timer" style="color:#ef4444; font-weight:700">15</span> detik...</p>
+            <button id="btnGet" class="btn-action" style="margin-top:15px" onclick="toResult()" disabled>Ambil Password</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <h2 style="color: var(--success); margin-bottom: 10px;">Berhasil!</h2>
+            <div class="pass-result">
+                <p style="font-size: 10px; font-weight: 700; color: var(--success)">PASSWORD ANDA</p>
+                <div id="wifiPass" class="pass-code">FREE-2026</div>
+                <button onclick="copyText()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; font-size:12px;">Salin Kode</button>
+            </div>
+            <p class="subtitle">Berlaku sampai jam 00:00 WIB malam ini.</p>
+        </div>
+    </div>
+
+    <div class="article-box">
+        <h2 class="article-title">Sejarah Internet</h2>
+        <p class="article-text">Internet berawal dari <b>ARPANET</b> di tahun 1969. Awalnya hanya digunakan untuk militer dan universitas sebelum akhirnya bisa kita nikmati secara gratis seperti sekarang.</p>
+        
+        <div style="margin-top: 20px;"></div>
+
+        <h2 class="article-title">Mengapa Verifikasi?</h2>
+        <p class="article-text">Sistem verifikasi ini membantu kami menyaring bot agar koneksi WiFi tetap stabil dan cepat bagi pengguna manusia.</p>
+        
+        <p style="font-size: 11px; color: #cbd5e1; text-align: center; margin-top: 25px;">&copy; 2026 NetFree - Akses Masa Depan</p>
+    </div>
+</div>
+
+<script>
+    function toLoading() {
+        // Switch view
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        
+        // Update steps
+        document.getElementById('s1').classList.replace('active', 'done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        // Timer
+        let time = 15;
+        let countdown = setInterval(() => {
+            time--;
+            document.getElementById('timer').innerText = time;
+            if(time <= 0) {
+                clearInterval(countdown);
+                document.getElementById('btnGet').disabled = false;
+            }
+        }, 1000);
+    }
+
+    function toResult() {
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        
+        document.getElementById('s2').classList.replace('active', 'done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+
+        // Generate password harian sederhana
+        const date = new Date();
+        const code = (date.getDate() * 123) + 456;
+        document.getElementById('wifiPass').innerText = "WIFI-" + code;
+    }
+
+    function copyText() {
+        const text = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(text);
+        alert("Password berhasil disalin!");
+    }
+</script>
+
+</body>
+</html>
             font-size: 14px; 
             color: var(--text-sub); 
             margin-bottom: 15px; 
