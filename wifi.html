@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Situs WiFi Ads</title>
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX" crossorigin="anonymous"></script>
+
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f4f7f6; color: #333; }
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 400px; text-align: center; }
+        .ad-container { background: #fafafa; border: 1px dashed #ccc; margin: 20px 0; min-height: 250px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .ad-label { position: absolute; top: -10px; left: 10px; background: #eee; font-size: 10px; padding: 2px 5px; color: #888; }
+        button { background: #007bff; color: white; border: none; padding: 15px 30px; border-radius: 8px; font-size: 16px; cursor: pointer; transition: 0.3s; width: 100%; }
+        button:hover { background: #0056b3; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="halaman1" class="container">
+        <h2>Selamat Datang</h2>
+        <p>Silakan tonton iklan di bawah untuk melanjutkan akses internet.</p>
+
+        <div class="ad-container">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="SLOT_IKLAN_1"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <button onclick="pindahHalaman()">Akses Internet Sekarang</button>
+    </div>
+
+    <div id="halaman2" class="container hidden">
+        <h2 style="color: #28a745;">Berhasil Terhubung!</h2>
+        <p>Anda sekarang memiliki akses internet. Jangan tutup halaman ini.</p>
+
+        <div class="ad-container">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-XXXXXXXXXX"
+                 data-ad-slot="SLOT_IKLAN_2"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <p style="font-size: 14px; color: #666;">Terima kasih telah menunggu.</p>
+    </div>
+
+    <script>
+        function pindahHalaman() {
+            // Sembunyikan Halaman 1, Tampilkan Halaman 2
+            document.getElementById('halaman1').classList.add('hidden');
+            document.getElementById('halaman2').classList.remove('hidden');
+            
+            // Logika tambahan jika ingin memicu reload iklan otomatis
+            window.scrollTo(0,0);
+        }
+    </script>
+
+</body>
+</html>
