@@ -1,116 +1,37 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Portal Akses WiFi Gratis</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
 
-    <style>
-        /* CSS RESET & BASE */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            background-attachment: fixed;
-            color: #1f2937;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            padding: 20px 15px;
-        }
+<h2>Apa Itu WiFi dan Bagaimana Cara Kerjanya?</h2>
+<p>
+    WiFi adalah teknologi jaringan nirkabel yang menggunakan gelombang radio untuk menyediakan akses internet tanpa kabel dengan kecepatan tinggi. Gelombang ini dikirimkan dari router ke perangkat Anda (seperti smartphone atau laptop) dalam frekuensi tertentu, biasanya 2.4 GHz atau 5 GHz. 
+</p>
 
-        .main-container {
-            width: 100%;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
+[attachment_0](attachment)
 
-        /* CARD STYLE (GLASSMORPHISM) */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            text-align: center;
-        }
+<h2>Perbedaan Frekuensi 2.4 GHz dan 5 GHz</h2>
+<p>
+    Saat terhubung ke WiFi, Anda mungkin melihat dua pilihan frekuensi. Berikut adalah perbedaannya:
+</p>
+<ul style="margin-left: 20px; font-size: 14px; color: #4b5563; margin-bottom: 15px;">
+    <li><b>2.4 GHz:</b> Memiliki jangkauan sinyal yang lebih luas dan lebih kuat menembus dinding, namun kecepatannya lebih rendah dan sering mengalami gangguan (interferensi) dari perangkat lain seperti microwave atau bluetooth.</li>
+    <li><b>5 GHz:</b> Menawarkan kecepatan data yang jauh lebih tinggi dan koneksi yang lebih stabil, namun jangkauannya lebih pendek dan sulit menembus penghalang fisik yang tebal.</li>
+</ul>
 
-        /* AD SLOTS */
-        .ad-box {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            border-radius: 12px;
-            margin: 15px 0;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+<h2>Mengenal Standar Keamanan WiFi (WPA2 vs WPA3)</h2>
+<p>
+    Keamanan jaringan nirkabel terus berkembang untuk melindungi data pengguna dari peretasan. <b>WPA2 (Wi-Fi Protected Access 2)</b> saat ini merupakan standar yang paling umum digunakan. Namun, standar terbaru yaitu <b>WPA3</b> kini mulai diperkenalkan dengan enkripsi yang lebih kuat, memberikan perlindungan ekstra bahkan jika Anda menggunakan password yang sederhana.
+</p>
 
-        /* PROGRESS STEPS */
-        .steps {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .step {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: #e5e7eb; display: flex; align-items: center;
-            justify-content: center; font-weight: 700; font-size: 13px;
-            transition: 0.3s;
-        }
-        .step.active { background: #4f46e5; color: white; transform: scale(1.1); }
-        .step.done { background: #10b981; color: white; }
 
-        /* BUTTONS */
-        .btn-primary {
-            background: linear-gradient(to right, #4f46e5, #7c3aed);
-            color: white; border: none; padding: 16px; border-radius: 14px;
-            width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
-            transition: 0.3s; box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-        }
-        .btn-primary:active { transform: scale(0.98); }
-        .btn-primary:disabled { background: #d1d5db; box-shadow: none; cursor: not-allowed; }
 
-        /* CONTENT SECTION */
-        .article-box {
-            background: white;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        .article-box h2 { font-size: 18px; margin-bottom: 12px; color: #111827; }
-        .article-box p { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 15px; }
-
-        .pass-container {
-            background: #f0fdf4;
-            border: 2px solid #bbf7d0;
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 15px;
-        }
-        .pass-code {
-            font-family: monospace;
-            font-size: 24px;
-            font-weight: 800;
-            color: #166534;
-            letter-spacing: 2px;
-            margin: 10px 0;
-        }
-
-        .hidden { display: none !important; }
+<h2>Faktor yang Mempengaruhi Kecepatan Internet</h2>
+<p>
+    Seringkali koneksi terasa lambat meskipun sinyal penuh. Beberapa faktor penyebabnya antara lain:
+</p>
+<ul style="margin-left: 20px; font-size: 14px; color: #4b5563; margin-bottom: 15px;">
+    <li><b>Posisi Router:</b> Semakin jauh Anda dari router, semakin lemah sinyalnya. Letakkan router di tempat terbuka dan tinggi.</li>
+    <li><b>Jumlah Pengguna:</b> Bandwidth terbagi ke setiap perangkat yang terhubung. Semakin banyak perangkat yang melakukan streaming, semakin lambat akses bagi yang lain.</li>
+    <li><b>Gangguan Sinyal:</b> Perangkat elektronik lain atau jaringan WiFi tetangga yang menggunakan kanal (channel) yang sama dapat menurunkan performa.</li>
+</ul>
         .timer-red { color: #ef4444; font-weight: 800; }
     </style>
 </head>
