@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NetFree Portal - Akses WiFi Terproteksi & Edukasi Internet</title>
+    <title>NetFree Portal - Akses WiFi & Edukasi</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
     <style>
-        /* ==============================
-           CSS TOTAL: Membereskan Semua Masalah Tampilan
-           ============================== */
+        /* CSS TOTAL FIX: Mengatasi bocoran teks pada background */
         :root {
             --primary: #4f46e5;
             --secondary: #7c3aed;
@@ -21,12 +19,8 @@
             --text-sub: #64748b;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
@@ -34,83 +28,169 @@
             color: var(--text-main);
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Memastikan scroll bekerja */
+            align-items: flex-start;
             min-height: 100vh;
-            padding: 30px 15px; /* Jarak pas di HP */
+            padding: 25px 15px;
         }
 
-        /* Container Utama */
         .container {
             width: 100%;
-            max-width: 450px; /* Maksimal lebar untuk HP besar */
+            max-width: 450px;
             display: flex;
             flex-direction: column;
-            gap: 25px; /* Jarak antar kartu */
-            animation: fadeIn 0.8s ease-out;
+            gap: 20px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* CARD STYLE (Kartu WiFi & Artikel) */
+        /* KARTU UTAMA */
         .card {
             background: rgba(255, 255, 255, 0.98);
-            border-radius: 28px;
-            padding: 35px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            transition: 0.3s;
-        }
-
-        /* IKLAN SLOT STYLE (Responsive) */
-        .ad-placeholder {
-            background: #f1f5f9;
-            border: 1px dashed #cbd5e1;
-            border-radius: 16px;
-            margin: 15px 0;
-            min-height: 100px; /* Jarak minimum iklan */
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-            color: #94a3b8; font-size: 11px;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            text-align: center;
         }
 
         /* PROGRESS STEPS */
         .steps {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 12px;
+            margin-bottom: 25px;
         }
         .step {
-            width: 35px; height: 35px; border-radius: 50%;
+            width: 32px; height: 32px; border-radius: 50%;
             background: #e2e8f0; display: flex; align-items: center;
-            justify-content: center; font-weight: 700; font-size: 14px;
-            transition: 0.3s;
+            justify-content: center; font-weight: 700; font-size: 13px;
         }
-        .step.active {
-            background: var(--primary); color: white;
-            transform: scale(1.1); box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
-        }
+        .step.active { background: var(--primary); color: white; }
         .step.done { background: var(--success); color: white; }
 
-        /* BUTTONS (Modern & Klik Responsif) */
+        /* BUTTONS */
         .btn-main {
-            background: linear-gradient(135deg, var(--primary) 0%, #7c3aed 100%);
-            color: white; border: none; padding: 18px; border-radius: 16px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white; border: none; padding: 16px; border-radius: 14px;
             width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+            margin-top: 15px;
         }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.5); }
-        .btn-main:active { transform: translateY(-1px); }
-        .btn-main:disabled { background: #d1d5db; box-shadow: none; cursor: not-allowed; color: #9ca3af; }
+        .btn-main:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
 
         /* PASSWORD BOX */
         .pass-display {
             background: #f0fdf4;
             border: 2px solid #bbf7d0;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        .pass-code {
+            font-size: 24px; font-weight: 800; color: #166534;
+            font-family: monospace; letter-spacing: 2px; margin: 10px 0;
+        }
+
+        /* ARTIKEL BOX (SEO & ADSENSE FRIENDLY) */
+        .article-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            line-height: 1.6;
+        }
+        .article-card h2 { font-size: 18px; margin-bottom: 12px; border-left: 4px solid var(--primary); padding-left: 10px; text-align: left; }
+        .article-card p { font-size: 14px; color: var(--text-sub); margin-bottom: 15px; text-align: left; }
+
+        .hidden { display: none !important; }
+        .ad-slot { background: #f8fafc; border: 1px dashed #ddd; border-radius: 12px; min-height: 100px; margin: 15px 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #999; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="steps">
+            <div id="s1" class="step active">1</div>
+            <div id="s2" class="step">2</div>
+            <div id="s3" class="step">✓</div>
+        </div>
+
+        <div id="view1">
+            <h1 style="font-size: 20px; margin-bottom: 10px;">WiFi Terproteksi</h1>
+            <p style="font-size: 13px; color: var(--text-sub);">Silakan verifikasi koneksi Anda untuk mendapatkan password hari ini.</p>
+            <div class="ad-slot">IKLAN ATAS</div>
+            <button class="btn-main" onclick="startLoading()">Buka Akses Sekarang</button>
+        </div>
+
+        <div id="view2" class="hidden">
+            <p style="font-size: 14px;">Menyiapkan Jalur Aman...</p>
+            <div class="ad-slot" style="min-height: 250px;">IKLAN TENGAH</div>
+            <p style="font-size: 13px;">Tunggu <b id="timer" style="color:#ef4444">15</b> detik...</p>
+            <button id="btnGet" class="btn-main" onclick="showResult()" disabled>Ambil Password</button>
+        </div>
+
+        <div id="view3" class="hidden">
+            <h2 style="color: var(--success); font-size: 18px;">Verifikasi Berhasil!</h2>
+            <div class="pass-display">
+                <small style="font-size: 10px; font-weight: 700; color: #166534;">PASSWORD ANDA</small>
+                <div id="wifiPass" class="pass-code">---</div>
+                <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:700; cursor:pointer; font-size: 12px;">Salin Kode</button>
+            </div>
+            <p style="font-size: 12px; color: var(--text-sub); margin-top: 15px;">Password ini diperbarui otomatis setiap pukul <b>00:00 WIB</b>.</p>
+        </div>
+    </div>
+
+    <div class="article-card">
+        <h2>Sejarah Singkat Internet</h2>
+        <p>Internet berawal dari proyek militer Amerika Serikat bernama <b>ARPANET</b> di tahun 1969. Awalnya, ini hanya digunakan untuk menghubungkan beberapa komputer universitas agar bisa bertukar data dalam situasi darurat.</p>
+        
+        <h2>Kenapa Harus Verifikasi WiFi?</h2>
+        <p>Verifikasi harian membantu kami memastikan bahwa jaringan tetap stabil dan tidak digunakan secara berlebihan oleh sistem otomatis (bot), sehingga kecepatan internet Anda tetap terjaga.</p>
+        
+        <p style="font-size: 11px; color: #94a3b8; border-top: 1px solid #f1f5f9; padding-top: 15px; margin-top: 10px; text-align: center;">
+            &copy; 2026 NetFree Portal - Solusi WiFi Terpercaya.
+        </p>
+    </div>
+</div>
+
+<script>
+    function startLoading() {
+        document.getElementById('view1').classList.add('hidden');
+        document.getElementById('view2').classList.remove('hidden');
+        document.getElementById('s1').classList.add('done');
+        document.getElementById('s1').innerText = '✓';
+        document.getElementById('s2').classList.add('active');
+
+        let sec = 15;
+        const countdown = setInterval(() => {
+            sec--;
+            document.getElementById('timer').innerText = sec;
+            if (sec <= 0) {
+                clearInterval(countdown);
+                document.getElementById('btnGet').disabled = false;
+            }
+        }, 1000);
+    }
+
+    function showResult() {
+        document.getElementById('view2').classList.add('hidden');
+        document.getElementById('view3').classList.remove('hidden');
+        document.getElementById('s2').classList.add('done');
+        document.getElementById('s2').innerText = '✓';
+        document.getElementById('s3').classList.add('done');
+
+        const d = new Date();
+        const dailyCode = (d.getFullYear() + (d.getMonth() + 1) + d.getDate()) * 1234 % 9000 + 1000;
+        document.getElementById('wifiPass').innerText = "FREE-" + dailyCode;
+    }
+
+    function copyPass() {
+        const pass = document.getElementById('wifiPass').innerText;
+        navigator.clipboard.writeText(pass);
+        alert("Password berhasil disalin!");
+    }
+</script>
+
+</body>
+</html>
             border-radius: 20px;
             padding: 25px;
             text-align: center;
