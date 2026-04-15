@@ -1,117 +1,70 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Password Access</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akses Password</title>
 
-    .container {
-      text-align: center;
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
-      width: 320px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    h1 {
-      margin-bottom: 10px;
-    }
+/* CARD */
+.card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 20px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  animation: fadeIn 0.5s ease;
+}
 
-    p {
-      color: #cbd5f5;
-    }
+h1 {
+  margin-bottom: 10px;
+}
 
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      background: #22c55e;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
+p {
+  color: #cbd5e1;
+}
 
-    button:hover {
-      background: #16a34a;
-    }
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    .hidden {
-      display: none;
-    }
+button:hover {
+  background: #16a34a;
+}
 
-    .progress {
-      width: 100%;
-      height: 10px;
-      background: #334155;
-      border-radius: 5px;
-      margin-top: 15px;
-      overflow: hidden;
-    }
+/* PROGRESS */
+.progress {
+  width: 100%;
+  height: 10px;
+  background: #334155;
+  border-radius: 5px;
+  margin-top: 15px;
+  overflow: hidden;
+}
 
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background: #22c55e;
-      transition: width 1s linear;
-    }
-
-    .password-box {
-      background: #334155;
-      padding: 10px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-<div class="container" id="step1">
-  <h1>🔒 Akses Terbatas</h1>
-  <p>Tonton iklan untuk mendapatkan password</p>
-  <button onclick="startAd()">🎬 Dapatkan Password</button>
-</div>
-
-<div class="container hidden" id="step2">
-  <h1>🎬 Iklan Diputar</h1>
-  <p>Mohon tunggu sampai selesai...</p>
-  <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-</div>
-
-<div class="container hidden" id="step3">
-  <h1>✅ Berhasil!</h1>
-  <p>Password kamu:</p>
-  <div class="password-box" id="passwordText"></div>
-  <button onclick="copyPassword()">📋 Copy</button>
-</div>
-
-<script>
-  function startAd() {
-    document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
-
-    let progress = 0;
-    let bar = document.getElementById("progressBar");
-
-    let interval = setInterval(() => {
-      progress += 10;
-      bar.style.width = progress + "%";
-
-      if (progress >= 100) {
+.progress-bar {
+  height: 100%;
+  width:      if (progress >= 100) {
         clearInterval(interval);
         showPassword();
       }
