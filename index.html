@@ -2,124 +2,124 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetFree Portal - Akses WiFi & Edukasi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Portal Akses WiFi Gratis</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9534373671983631" crossorigin="anonymous"></script>
 
     <style>
-        :root {
-            --primary: #6366f1;
-            --secondary: #a855f7;
-            --success: #22c55e;
-            --bg-gradient: linear-gradient(135deg, #4338ca 0%, #6d28d9 100%);
-            --glass: rgba(255, 255, 255, 0.95);
-        }
-
+        /* CSS RESET & BASE */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-
+        
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
             background-attachment: fixed;
-            color: #1e293b;
-            line-height: 1.6;
+            color: #1f2937;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px 15px;
         }
 
-        .main-wrapper {
+        .main-container {
+            width: 100%;
+            max-width: 450px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            min-height: 100vh;
+            gap: 25px;
         }
 
-        /* Container Kartu WiFi */
-        .card {
-            background: var(--glass);
-            width: 100%;
-            max-width: 400px;
+        /* CARD STYLE (GLASSMORPHISM) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            padding: 30px;
+            padding: 25px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             text-align: center;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        /* Iklan Slot */
-        .ad-slot {
-            background: #f1f5f9;
+        /* AD SLOTS */
+        .ad-box {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
             border-radius: 12px;
             margin: 15px 0;
             min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px dashed #cbd5e1;
             overflow: hidden;
         }
 
-        /* Progress Steps */
+        /* PROGRESS STEPS */
         .steps {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 25px;
         }
         .step {
-            width: 35px; height: 35px; border-radius: 50%;
-            background: #e2e8f0; display: flex; align-items: center;
-            justify-content: center; font-weight: bold; font-size: 14px;
-        }
-        .step.active { background: var(--primary); color: white; }
-        .step.done { background: var(--success); color: white; }
-
-        /* Buttons */
-        .btn {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white; border: none; padding: 16px; border-radius: 14px;
-            width: 100%; font-size: 16px; font-weight: 600; cursor: pointer;
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            width: 32px; height: 32px; border-radius: 50%;
+            background: #e5e7eb; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 13px;
             transition: 0.3s;
         }
-        .btn:disabled { background: #cbd5e1; box-shadow: none; cursor: not-allowed; }
+        .step.active { background: #4f46e5; color: white; transform: scale(1.1); }
+        .step.done { background: #10b981; color: white; }
 
-        /* Password Box */
-        .pass-box {
-            background: #f8fafc;
-            border: 2px solid #e2e8f0;
+        /* BUTTONS */
+        .btn-primary {
+            background: linear-gradient(to right, #4f46e5, #7c3aed);
+            color: white; border: none; padding: 16px; border-radius: 14px;
+            width: 100%; font-size: 16px; font-weight: 700; cursor: pointer;
+            transition: 0.3s; box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
+        }
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-primary:disabled { background: #d1d5db; box-shadow: none; cursor: not-allowed; }
+
+        /* CONTENT SECTION */
+        .article-box {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .article-box h2 { font-size: 18px; margin-bottom: 12px; color: #111827; }
+        .article-box p { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 15px; }
+
+        .pass-container {
+            background: #f0fdf4;
+            border: 2px solid #bbf7d0;
             border-radius: 16px;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 15px;
         }
-        .pass-text { font-size: 24px; font-weight: 800; color: #1e293b; margin: 10px 0; letter-spacing: 2px; }
-
-        /* BAGIAN ARTIKEL (DI BAWAH KARTU) */
-        .article-card {
-            background: white;
-            width: 100%;
-            max-width: 700px;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            color: #475569;
+        .pass-code {
+            font-family: monospace;
+            font-size: 24px;
+            font-weight: 800;
+            color: #166534;
+            letter-spacing: 2px;
+            margin: 10px 0;
         }
-        .article-card h2 { color: #1e293b; margin-bottom: 15px; }
-        .article-card p { margin-bottom: 15px; font-size: 14px; }
-        .article-card ul { margin-left: 20px; margin-bottom: 20px; font-size: 14px; }
 
         .hidden { display: none !important; }
-        .timer-val { color: #ef4444; font-weight: 800; }
+        .timer-red { color: #ef4444; font-weight: 800; }
     </style>
 </head>
 <body>
 
-<div class="main-wrapper">
+<div class="main-container">
     
-    <div class="card">
-        <div class="ad-slot">
+    <div class="glass-card">
+        <div class="ad-box">
             <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
             <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
@@ -131,66 +131,66 @@
         </div>
 
         <div id="view1">
-            <h2 style="font-size: 22px; margin-bottom: 10px;">WiFi Terproteksi</h2>
-            <p style="font-size: 13px; color: #64748b; margin-bottom: 20px;">Klik tombol di bawah untuk memverifikasi akses dan mendapatkan password hari ini.</p>
-            <button class="btn" onclick="startLoading()">Buka Akses Sekarang</button>
+            <h1 style="font-size: 22px; margin-bottom: 8px;">WiFi Terproteksi</h1>
+            <p style="font-size: 13px; color: #6b7280; margin-bottom: 20px;">Verifikasi diperlukan untuk mendapatkan password hari ini.</p>
+            <button class="btn-primary" onclick="goStep2()">Buka Akses Sekarang</button>
         </div>
 
         <div id="view2" class="hidden">
-            <p style="font-size: 14px;">Memuat Iklan Verifikasi...</p>
-            <div class="ad-slot" style="min-height: 250px;">
+            <p style="font-size: 14px; margin-bottom: 10px;">Proses Verifikasi Keamanan...</p>
+            <div class="ad-box" style="min-height: 250px;">
                 <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
                 <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
             </div>
-            <p style="font-size: 13px;">Tunggu <span id="timer" class="timer-val">15</span> detik...</p>
-            <button id="btnGet" class="btn" onclick="showFinal()" disabled>Dapatkan Password</button>
+            <p style="font-size: 13px;">Mohon tunggu <span id="timer" class="timer-red">15</span> detik...</p>
+            <button id="btnGet" class="btn-primary" onclick="goStep3()" disabled style="margin-top:15px;">Dapatkan Password</button>
         </div>
 
         <div id="view3" class="hidden">
-            <h2 style="color: var(--success);">Berhasil!</h2>
-            <div class="pass-box">
-                <small style="font-size: 10px; font-weight: 800; color: var(--primary);">PASSWORD HARI INI</small>
-                <div id="wifiPass" class="pass-text">---</div>
-                <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:600; cursor:pointer;">Salin Password</button>
+            <div style="font-size: 40px; margin-bottom: 10px;">✅</div>
+            <h2 style="color: #059669;">Verifikasi Sukses!</h2>
+            <div class="pass-container">
+                <small style="font-weight: 700; color: #166534; font-size: 10px; text-transform: uppercase;">Password WiFi Anda</small>
+                <div id="wifiPass" class="pass-code">---</div>
+                <button onclick="copyPass()" style="background:none; border:none; color:#4f46e5; font-weight:700; cursor:pointer; font-size:12px;">Salin Password</button>
             </div>
         </div>
     </div>
 
-    <div class="article-card">
-        <h2>Tips Menggunakan WiFi Publik dengan Aman</h2>
-        <p>Menggunakan layanan internet gratis sangat memudahkan produktivitas kita. Namun, sebagai pengguna yang bijak, kita harus tetap memperhatikan keamanan data pribadi.</p>
-        <ul>
-            <li><b>Gunakan VPN:</b> Membantu mengenkripsi data Anda agar tidak mudah disadap.</li>
-            <li><b>Hindari Transaksi Perbankan:</b> Jangan mengakses m-banking saat menggunakan jaringan umum.</li>
-            <li><b>Aktifkan Firewall:</b> Jaga sistem keamanan perangkat tetap aktif.</li>
-        </ul>
-        <h3>Kenapa Password Selalu Berganti?</h3>
-        <p>Sistem kami mengganti password secara otomatis setiap 24 jam untuk menjaga stabilitas jaringan dan mencegah penggunaan berlebihan (overload).</p>
-        <p style="font-size: 12px; border-top: 1px solid #eee; pt-10; mt-10;">&copy; 2026 NetFree Portal - Solusi Internet Gratis Terpercaya.</p>
+    <div class="article-box">
+        <h2>Tips Aman Menggunakan WiFi Gratis</h2>
+        <p>Layanan WiFi publik sangat membantu kita untuk tetap terhubung. Namun, pastikan Anda selalu menggunakan koneksi HTTPS dan hindari membuka aplikasi perbankan saat terhubung ke jaringan umum untuk menjaga keamanan data Anda.</p>
+        
+        <h2>Kenapa Harus Verifikasi?</h2>
+        <p>Sistem verifikasi harian ini memastikan bandwidth WiFi tetap stabil untuk semua pengguna. Dengan adanya jeda waktu, kami dapat menyaring akses otomatis yang dapat memperlambat jaringan.</p>
+        
+        <p style="font-size: 11px; text-align: center; color: #9ca3af; border-top: 1px solid #f3f4f6; padding-top: 15px; margin-top: 20px;">
+            &copy; 2026 Portal WiFi Gratis - Akses Internet untuk Semua.
+        </p>
     </div>
 
 </div>
 
 <script>
-    function startLoading() {
+    function goStep2() {
         document.getElementById('view1').classList.add('hidden');
         document.getElementById('view2').classList.remove('hidden');
         document.getElementById('s1').classList.add('done');
         document.getElementById('s1').innerText = '✓';
         document.getElementById('s2').classList.add('active');
 
-        let sec = 15;
+        let count = 15;
         const countdown = setInterval(() => {
-            sec--;
-            document.getElementById('timer').innerText = sec;
-            if (sec <= 0) {
+            count--;
+            document.getElementById('timer').innerText = count;
+            if (count <= 0) {
                 clearInterval(countdown);
                 document.getElementById('btnGet').disabled = false;
             }
         }, 1000);
     }
 
-    function showFinal() {
+    function goStep3() {
         document.getElementById('view2').classList.add('hidden');
         document.getElementById('view3').classList.remove('hidden');
         document.getElementById('s2').classList.add('done');
@@ -199,433 +199,7 @@
 
         const d = new Date();
         const code = (d.getFullYear() + (d.getMonth() + 1) + d.getDate()) * 1234 % 9000 + 1000;
-        document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + code;
-    }
-
-    function copyPass() {
-        const p = document.getElementById('wifiPass').innerText;
-        navigator.clipboard.writeText(p);
-        alert("Password disalin!");
-    }
-</script>
-
-</body>
-</html>
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
-
-        /* Ikon WiFi Animasi */
-        .wifi-icon-anim {
-            font-size: 60px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: inline-block;
-            animation: wifiPulse 2s infinite;
-        }
-
-        @keyframes wifiPulse {
-            0% { opacity: 0.5; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0.5; transform: scale(0.95); }
-        }
-
-        h2 { font-weight: 800; font-size: 26px; margin: 10px 0; letter-spacing: -1px; }
-        .subtitle { color: var(--text-sub); font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
-
-        /* Tombol Modern */
-        .btn {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            border-radius: 16px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
-        }
-
-        .btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.4);
-        }
-
-        .btn:active:not(:disabled) { transform: translateY(-1px); }
-
-        .btn:disabled {
-            background: #d1d5db;
-            box-shadow: none;
-            cursor: not-allowed;
-            color: #9ca3af;
-        }
-
-        /* Tampilan Timer & Password */
-        .timer-text { font-weight: 700; color: #ef4444; font-size: 18px; }
-        
-        .pass-box {
-            background: white;
-            border: 2px solid #e5e7eb;
-            border-radius: 18px;
-            padding: 25px;
-            margin-top: 25px;
-            position: relative;
-            animation: passSlideIn 0.5s ease-out;
-        }
-
-        @keyframes passSlideIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .pass-label { font-size: 12px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .pass-text { font-size: 28px; font-weight: 800; color: var(--text-main); font-family: monospace; letter-spacing: 2px; margin: 10px 0; }
-        
-        .copy-btn {
-            background: none; border: none;
-            color: var(--primary); font-weight: 600;
-            cursor: pointer; font-size: 14px;
-            margin-top: 10px; display: inline-flex; align-items: center; gap: 5px;
-        }
-
-        /* Helper Class */
-        .hidden { display: none !important; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <div class="ad-container">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9534373671983631"
-             data-ad-slot="1234567890"
-             data-ad-format="horizontal"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <div class="steps-container">
-        <div class="step-line"></div>
-        <div id="s1" class="step active">1</div>
-        <div id="s2" class="step">2</div>
-        <div id="s3" class="step">✓</div>
-    </div>
-
-    <div id="view1">
-        <div class="wifi-icon-anim">📶</div>
-        <h2>WiFi Terproteksi</h2>
-        <p class="subtitle">Jaringan ini memerlukan verifikasi keamanan harian. Klik tombol di bawah untuk memulai proses dan mendapatkan password hari ini.</p>
-        <button type="button" class="btn" onclick="startVerification()">Mulai Verifikasi Akses →</button>
-    </div>
-
-    <div id="view2" class="hidden">
-        <h3>Memverifikasi...</h3>
-        <p class="subtitle">Mohon tunggu sementara sistem kami menyiapkan akses aman untuk perangkat Anda.</p>
-        
-        <div class="ad-container" style="min-height: 250px; background: white;">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-9534373671983631"
-                 data-ad-slot="1234567890"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        
-        <p id="timerMsg" class="subtitle">Sisa waktu verifikasi: <span id="timer" class="timer-text">15</span> detik</p>
-        <button id="btnGetPass" type="button" class="btn" disabled onclick="showPasswordPage()">Dapatkan Password WiFi</button>
-    </div>
-
-    <div id="view3" class="hidden">
-        <div style="font-size: 50px; margin-bottom: 10px;">🎉</div>
-        <h2 style="color: var(--success);">Verifikasi Berhasil!</h2>
-        <p class="subtitle">Akses Anda telah dibuka. Gunakan password di bawah ini pada pengaturan WiFi perangkat Anda.</p>
-        
-        <div class="pass-box">
-            <div class="pass-label">Password WiFi Hari Ini</div>
-            <div id="wifiPass" class="pass-text">---</div>
-            <button type="button" class="copy-btn" onclick="copyPassword()">
-                📋 Salin Password
-            </button>
-        </div>
-        
-        <p class="subtitle" style="font-size: 12px; margin-top: 20px;">
-            💡 Password ini berlaku hingga tengah malam nanti. Besok Anda perlu melakukan verifikasi ulang.
-        </p>
-    </div>
-
-    <div class="ad-container" style="margin-top: 30px;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9534373671983631"
-             data-ad-slot="1234567890"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-    
-    <p style="font-size: 11px; color: rgba(107, 114, 128, 0.6); margin-top: 20px;">Powered by SecureWiFi Portal</p>
-</div>
-
-<script>
-    // FUNGSI 1: Memulai Proses Verifikasi (Pindah ke View 2)
-    function startVerification() {
-        // Sembunyikan View 1, Tampilkan View 2
-        document.getElementById('view1').classList.add('hidden');
-        document.getElementById('view2').classList.remove('hidden');
-        
-        // Update Indikator Langkah (Progress)
-        document.getElementById('s1').classList.add('done');
-        document.getElementById('s1').innerText = '✓';
-        document.getElementById('s2').classList.add('active');
-
-        // Memulai Hitung Mundur (Timer)
-        let timeLeft = 15;
-        const timerElement = document.getElementById('timer');
-        const btnGetPass = document.getElementById('btnGetPass');
-        const timerMsg = document.getElementById('timerMsg');
-
-        const countdown = setInterval(() => {
-            timeLeft--;
-            if (timerElement) timerElement.innerText = timeLeft;
-            
-            // Jika waktu habis
-            if (timeLeft <= 0) {
-                clearInterval(countdown); // Hentikan timer
-                if (btnGetPass) btnGetPass.disabled = false; // Aktifkan tombol
-                if (timerMsg) timerMsg.innerHTML = "<span style='color:var(--success); font-weight:700;'>Verifikasi Selesai!</span> Silakan ambil password Anda.";
-            }
-        }, 1000); // Berjalan setiap 1 detik
-    }
-
-    // FUNGSI 2: Menampilkan Password (Pindah ke View 3)
-    function showPasswordPage() {
-        // Sembunyikan View 2, Tampilkan View 3
-        document.getElementById('view2').classList.add('hidden');
-        document.getElementById('view3').classList.remove('hidden');
-        
-        // Update Indikator Langkah Akhir
-        document.getElementById('s2').classList.add('done');
-        document.getElementById('s2').innerText = '✓';
-        document.getElementById('s3').classList.add('done');
-
-        // Hasilkan Password Otomatis
-        generateDailyPassword();
-    }
-
-    // FUNGSI 3: Logika Membuat Password Berdasarkan Tanggal (Otomatis ganti tiap hari)
-    function generateDailyPassword() {
-        const now = new Date();
-        // Format tanggal: TahunBulanTanggal (misal: 2024522)
-        const dateString = now.getFullYear() + "" + (now.getMonth() + 1) + "" + now.getDate();
-        
-        // Rumus matematika sederhana untuk kode unik harian (selalu sama untuk semua user di hari itu)
-        let seed = parseInt(dateString);
-        let passCode = (seed * 1234 % 9000) + 1000; // Menghasilkan 4 angka acak
-        
-        // Tampilkan hasilnya
-        document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + passCode;
-    }
-
-    // FUNGSI 4: Menyalin Password ke Clipboard
-    function copyPassword() {
-        const passwordText = document.getElementById('wifiPass').innerText;
-        // Menggunakan Clipboard API modern
-        navigator.clipboard.writeText(passwordText).then(() => {
-            // Berhasil disalin
-            alert("Password berhasil disalin: " + passwordText + "\nSilakan tempel di pengaturan WiFi Anda.");
-        }).catch(err => {
-            // Gagal disalin (jarang terjadi di browser modern)
-            alert("Gagal menyalin otomatis. Silakan salin manual teks: " + passwordText);
-        });
-    }
-</script>
-
-</body>
-</html>
-    
-    <div class="ad-placeholder">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <div class="wifi-card">
-        <div id="step1">
-            <h1 style="margin-top:0;">Akses WiFi Cepat</h1>
-            <p>Klik tombol di bawah untuk memverifikasi koneksi dan melihat password hari ini.</p>
-            <button class="btn" onclick="startLoading()">Buka Akses Sekarang</button>
-        </div>
-
-        <div id="step2" class="hidden">
-            <h3>Memverifikasi Keamanan...</h3>
-            <div class="ad-placeholder" style="min-height: 250px;">
-                <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-            <p>Silakan tunggu <span id="timer" style="font-weight:bold; color:red;">15</span> detik hingga proses selesai.</p>
-            <button id="btnFinal" class="btn" disabled onclick="showPass()">Lihat Password</button>
-        </div>
-
-        <div id="step3" class="hidden">
-            <h2 style="color: #16a34a;">Akses Berhasil!</h2>
-            <div class="pass-display">
-                <small>PASSWORD WIFI ANDA:</small>
-                <h1 id="passResult" style="margin:10px 0; color:#166534;">---</h1>
-            </div>
-            <p style="font-size: 13px;">Gunakan password di atas pada jaringan "WiFi-Gratis-Portal".</p>
-        </div>
-    </div>
-
-    <div class="article-section">
-        <h2>Tips Menggunakan WiFi Publik dengan Aman</h2>
-        <p>Menggunakan layanan internet gratis sangat memudahkan produktivitas kita. Namun, sebagai pengguna yang bijak, kita harus tetap memperhatikan keamanan data pribadi. Berikut adalah beberapa tips menjaga keamanan saat terhubung ke jaringan publik:</p>
-        
-        <ul>
-            <li><b>Gunakan VPN:</b> Virtual Private Network membantu mengenkripsi data Anda sehingga tidak mudah disadap.</li>
-            <li><b>Hindari Transaksi Perbankan:</b> Jangan mengakses m-banking atau memasukkan data kartu kredit saat berada di jaringan umum.</li>
-            <li><b>Aktifkan Firewall:</b> Pastikan sistem keamanan pada laptop atau ponsel Anda dalam kondisi aktif.</li>
-        </ul>
-
-        <h3>Kenapa Password Selalu Berganti?</h3>
-        <p>Sistem kami mengganti password secara otomatis setiap 24 jam. Hal ini bertujuan untuk menjaga stabilitas jaringan agar tidak terjadi penumpukan pengguna yang berlebihan dalam satu waktu (overload). Dengan melakukan verifikasi harian, kami dapat memastikan bahwa hanya pengguna aktif yang mendapatkan akses bandwidth terbaik.</p>
-        
-        <p>Terima kasih telah menggunakan layanan NetFree Portal. Kami terus berkomitmen memberikan akses informasi yang inklusif bagi semua orang melalui dukungan iklan yang relevan.</p>
-    </div>
-
-</div>
-
-<footer>
-    &copy; 2026 NetFree Portal - Solusi Internet Gratis Terpercaya.
-</footer>
-
-<script>
-    function startLoading() {
-        document.getElementById('step1').classList.add('hidden');
-        document.getElementById('step2').classList.remove('hidden');
-        let sec = 15;
-        const timer = setInterval(() => {
-            sec--;
-            document.getElementById('timer').innerText = sec;
-            if(sec <= 0) {
-                clearInterval(timer);
-                document.getElementById('btnFinal').disabled = false;
-            }
-        }, 1000);
-    }
-
-    function showPass() {
-        document.getElementById('step2').classList.add('hidden');
-        document.getElementById('step3').classList.remove('hidden');
-        const d = new Date();
-        const code = (d.getFullYear() + (d.getMonth()+1) + d.getDate()) * 1234 % 9000 + 1000;
-        document.getElementById('passResult').innerText = "WIFI-PAGI-" + code;
-    }
-</script>
-
-</body>
-</html>
-        .pass-label { font-size: 11px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; }
-        .pass-text { font-size: 24px; font-weight: 800; color: #1e293b; margin: 10px 0; font-family: monospace; }
-
-        .hidden { display: none !important; }
-        .timer-val { color: #ef4444; font-weight: 800; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <div class="ad-container">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-
-    <div class="steps">
-        <div id="s1" class="step active">1</div>
-        <div id="s2" class="step">2</div>
-        <div id="s3" class="step">3</div>
-    </div>
-
-    <div id="view1">
-        <div class="wifi-icon">📶</div>
-        <h2>WiFi Terproteksi</h2>
-        <p class="subtitle">Klik tombol di bawah untuk memverifikasi akses dan mendapatkan password hari ini.</p>
-        <button class="btn" onclick="startProcess()">Buka Akses Sekarang</button>
-    </div>
-
-    <div id="view2" class="hidden">
-        <p class="subtitle">Verifikasi sedang berlangsung...</p>
-        <div class="ad-container" style="min-height: 250px;">
-            <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-        <p id="timerMsg" class="subtitle">Mohon tunggu <span id="timer" class="timer-val">15</span> detik...</p>
-        <button id="btnGet" class="btn" onclick="showFinal()" disabled>Dapatkan Password</button>
-    </div>
-
-    <div id="view3" class="hidden">
-        <div style="font-size: 40px;">✅</div>
-        <h2>Akses Terbuka!</h2>
-        <p class="subtitle">Silakan gunakan password di bawah ini pada perangkat Anda.</p>
-        
-        <div class="pass-box">
-            <div class="pass-label">Password WiFi</div>
-            <div id="wifiPass" class="pass-text">---</div>
-            <button onclick="copyPass()" style="background:none; border:none; color:var(--primary); font-weight:600; cursor:pointer; font-size:13px;">
-                <i class="far fa-copy"></i> Salin Password
-            </button>
-        </div>
-        <p class="subtitle" style="font-size: 11px; margin-top: 15px;">*Password akan berganti otomatis besok pagi.</p>
-    </div>
-
-    <div class="ad-container" style="margin-top: 25px;">
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9534373671983631" data-ad-slot="1234567890" data-ad-format="auto" data-full-width-responsive="true"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-</div>
-
-<script>
-    function startProcess() {
-        document.getElementById('view1').classList.add('hidden');
-        document.getElementById('view2').classList.remove('hidden');
-        document.getElementById('s1').classList.add('done');
-        document.getElementById('s1').innerText = '✓';
-        document.getElementById('s2').classList.add('active');
-
-        let timeLeft = 15;
-        const timerHtml = document.getElementById('timer');
-        const btnGet = document.getElementById('btnGet');
-        const timerMsg = document.getElementById('timerMsg');
-
-        const countdown = setInterval(() => {
-            timeLeft--;
-            timerHtml.innerText = timeLeft;
-            if (timeLeft <= 0) {
-                clearInterval(countdown);
-                btnGet.disabled = false;
-                timerMsg.innerHTML = "Verifikasi selesai! Klik tombol di bawah.";
-            }
-        }, 1000);
-    }
-
-    function showFinal() {
-        document.getElementById('view2').classList.add('hidden');
-        document.getElementById('view3').classList.remove('hidden');
-        document.getElementById('s2').classList.add('done');
-        document.getElementById('s2').innerText = '✓';
-        document.getElementById('s3').classList.add('done');
-        document.getElementById('s3').innerText = '✓';
-
-        generatePass();
-    }
-
-    function generatePass() {
-        const d = new Date();
-        const seed = d.getFullYear() + (d.getMonth() + 1) + d.getDate();
-        const code = (seed * 1234 % 9000) + 1000;
-        document.getElementById('wifiPass').innerText = "WIFI-PAGI-" + code;
+        document.getElementById('wifiPass').innerText = "FREE-" + code;
     }
 
     function copyPass() {
